@@ -18,7 +18,7 @@ class Imagem(models.Model):
 
 class Info(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, null=True, blank=True)
     descricao = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -78,6 +78,7 @@ class Guia(models.Model):
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     contato = models.CharField(max_length=100)
     rating = models.FloatField(null=False, blank=False, default=0.0)
+    avatar = models.ForeignKey(Imagem, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.nome + ' - ' + self.cidade.nome
