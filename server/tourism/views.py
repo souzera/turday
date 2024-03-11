@@ -31,11 +31,24 @@ class MediaView(View):
                 return response
         except:
             return HttpResponseRedirect(path)
+
+class CidadeViewSet(viewsets.ModelViewSet):
+    serializer_class = CidadeSerializer
+    queryset = Cidade.objects.all()
         
 class PontoTuristicoViewSet(viewsets.ModelViewSet):
-    
     serializer_class = PontoTuristicoSerializer
-    
     queryset = PontoTuristico.objects.all()
 
+class EventoViewSet(viewsets.ModelViewSet):
+    serializer_class = EventoSerializer
+    queryset = Evento.objects.all()
+
+class GuiaViewSet(viewsets.ModelViewSet):
+    serializer_class = GuiaSerializer
+    queryset = Guia.objects.all()
+
+class ServicoViewSet(viewsets.ModelViewSet):
+    serializer_class = ServicoSerializer
+    queryset = Servico.objects.all()
     
