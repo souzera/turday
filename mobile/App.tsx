@@ -4,23 +4,29 @@ import { View, Text } from "react-native";
 import SplashView from "./src/screen/SplashView";
 import HomeView from "./src/screen/HomeView";
 
-SplashScreen.preventAutoHideAsync()
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+  Montserrat_900Black,
+} from "@expo-google-fonts/montserrat";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { styles } from "./src/screen/HomeView/styles";
+
+import { Routes } from "./src/routes";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-
-  const [appIsReady, setAppIsReady] = useState(true);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady){
-      await SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
-
-  if (!appIsReady) {
-    return (<SplashView/>);
-  }
+  const [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Montserrat_700Bold,
+    Montserrat_900Black,
+  });
 
   return (
-    <HomeView />
+    <Routes/>
   );
 }
