@@ -1,17 +1,16 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeView from "../screen/HomeView";
-import SplashView from "../screen/SplashView";
 import { NavigationContainer } from "@react-navigation/native";
 
-const {Navigator, Screen} = createNativeStackNavigator();
+import HomeView from "../screen/HomeView";
+
+const Stack = createNativeStackNavigator();
 
 export function AppRoutes() {
   return (
-    <NavigationContainer>
-      <Navigator>
-        <Screen name="Home" component={HomeView} />
-        <Screen name="Home" component={SplashView} />
-      </Navigator>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeView} options={{headerShown: false}} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
