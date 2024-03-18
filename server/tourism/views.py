@@ -5,8 +5,6 @@ from django.conf import settings
 from rest_framework import viewsets
 
 from .serializers import *
-
-
 import os
 
 # Create your views here.
