@@ -1,7 +1,5 @@
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useState } from "react";
-import { View, Text } from "react-native";
-import SplashView from "./src/screen/SplashView";
+
 import HomeView from "./src/screen/HomeView";
 
 import {
@@ -11,12 +9,22 @@ import {
   Montserrat_700Bold,
   Montserrat_900Black,
 } from "@expo-google-fonts/montserrat";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "./src/screen/HomeView/styles";
-
 import { Routes } from "./src/routes";
+import Loading from "./src/components/Loading";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native";
+import Carousel from "./src/components/Carousel";
+
 
 SplashScreen.preventAutoHideAsync();
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+})
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,6 +35,8 @@ export default function App() {
   });
 
   return (
-    <Routes/>
+    <SafeAreaView style={styles.container}>
+      <Carousel />
+    </SafeAreaView>
   );
 }
