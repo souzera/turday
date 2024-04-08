@@ -1,12 +1,11 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, View } from "react-native";
 import { styles } from "./styles";
+import { Text, View } from "react-native";
 import { TurdayTitle } from "../../components/Title";
-import Carousel from "../../components/Carousel";
+import DestaquesCarrosel from "../../components/Carousel";
 
-const HomeView = () => {
+export default function HomeView() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View>
         <TurdayTitle />
       </View>
@@ -15,7 +14,7 @@ const HomeView = () => {
         <View>
           <Text>Destaques</Text>
           <Text>Carrosel com os destaques</Text>
-          <Carousel />
+          <DestaquesCarrosel />
         </View>
 
         <View>
@@ -23,8 +22,7 @@ const HomeView = () => {
           <Text>Lista com Pontos</Text>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
-export default HomeView;
