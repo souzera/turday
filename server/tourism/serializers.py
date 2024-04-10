@@ -56,7 +56,7 @@ class GuiaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Guia
-        fields = ('id', 'nome', 'cidade', 'contato', 'rating')
+        fields = ('id', 'nome', 'cidade', 'contato', 'rating', 'avatar')
 
 class ServicoSerializer(serializers.ModelSerializer):
 
