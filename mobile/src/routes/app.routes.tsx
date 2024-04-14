@@ -4,35 +4,35 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeView from "../screen/HomeView";
 import ListView from "../screen/ListView";
 import MapView from "../screen/MapView";
-import { CategoryView } from "../screen/CategoryView";
+import CategoryView from "../screen/CategoryView";
 
-const {Navigator, Screen} = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export function AppRoutes() {
   return (
     <NavigationContainer independent={true}>
-      <Navigator>
-        <Screen
-          name="HomeView"
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
           component={HomeView}
           options={{ headerShown: false }}
         />
-        <Screen
-          name="ListView"
+        <Stack.Screen
+          name="List"
           component={ListView}
           options={{ headerShown: false }}
         />
-        <Screen 
-          name="MapPage"
+        <Stack.Screen 
+          name="Map"
           component={MapView}
           options={{ headerShown: false }}
         />
-        <Screen 
-          name="CategoryView"
+        <Stack.Screen 
+          name="Category"
           component={CategoryView}
           options={{ headerShown: false }}
         />
-      </Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

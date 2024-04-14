@@ -1,7 +1,7 @@
 import { styles } from "./styles";
 import { Text, View } from "react-native";
 import { TurdayTitle } from "../../components/Title";
-import DestaquesCarrosel from "../../components/Carousel";
+import Carrosel from "../../components/Carousel";
 
 export default function HomeView() {
   return (
@@ -12,9 +12,8 @@ export default function HomeView() {
 
       <View style={styles.div}>
         <View>
-          <Text>Destaques</Text>
-          <Text>Carrosel com os destaques</Text>
-          <DestaquesCarrosel />
+          <Text>✨ Destaques</Text>
+          <Carrosel />
         </View>
 
         <View>
@@ -24,5 +23,4 @@ export default function HomeView() {
       </View>
     </View>
   );
-};
-
+}

@@ -3,18 +3,17 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   center: {
     display: "flex",
-    width: "100%",
-    height: 'auto',
-    backgroundColor: 'lightblue',
     justifyContent: "center",
     alignItems: "center",
   },
   slide: {
-    flex: 1,
+    height: 200,
+    width: 300,
   },
   page: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "lightblue",
+    borderRadius: 10,
   },
 });
