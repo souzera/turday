@@ -6,6 +6,8 @@ export const THEME = {
         WARNING: "#FFC413",
         INFO: "#48D1CC",
         SUCCESS: "#48D166",
+        DARKGRAY: "#8C8C8C",
+        LIGTHGRAY: "#D9D9D9"
     },
     FONT_FAMILY:{
         REGULAR: "Montserrat-Regular",

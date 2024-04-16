@@ -6,9 +6,9 @@ import { styles } from "./styles";
 export default function CategoryView() {
   return (
     <>
-      <View>
+      <View style={styles.container}>
         <Text>
-          Categoria
+          Category View
         </Text>
       </View>
     </>
