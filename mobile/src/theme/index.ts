@@ -7,7 +7,8 @@ export const THEME = {
         INFO: "#48D1CC",
         SUCCESS: "#48D166",
         DARKGRAY: "#8C8C8C",
-        LIGTHGRAY: "#D9D9D9"
+        LIGTHGRAY: "#D9D9D9",
+        BLUE: "#1E90FF",
     },
     FONT_FAMILY:{
         REGULAR: "Montserrat-Regular",
@@ -15,8 +16,10 @@ export const THEME = {
         SEMI_BOLD: "Montserrat-SemiBold",
     },
     FONT_SIZE: {
-        SML: 14,
+        XS: 10,
+        SM: 14,
         MD: 16,
         LG: 24,
+        XG: 32,
     },
 }

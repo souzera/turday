@@ -1,5 +1,3 @@
-import HomeView from "./src/screen/HomeView";
-
 import {
   useFonts,
   Montserrat_400Regular,
@@ -10,7 +8,6 @@ import {
 import { Routes } from "./src/routes";
 import Loading from "./src/components/Loading";
 import { StyleSheet } from "react-native";
-import Carousel from "./src/components/Carousel";
 
 const styles = StyleSheet.create({
   container: {
