@@ -10,7 +10,7 @@ class Imagem(models.Model):
         verbose_name_plural = 'Imagens'
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     legenda = models.CharField(max_length=100)
-    imagem = models.ImageField(upload_to=RenomearComUUID('images/'), null=True, blank=True)
+    imagem = models.ImageField(upload_to=RenomearComUUID(''), null=True, blank=True)
     url = models.URLField(null=True, blank=True)
 
     def __str__(self):
