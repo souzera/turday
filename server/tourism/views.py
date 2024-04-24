@@ -9,11 +9,13 @@ import os
 
 # Create your views here.
 
-import magic
-mime = magic.Magic(mime=True)
+from magic import magic
+magic = magic.Magic(mime=True)
 
 class MediaView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
+
+        print(f'kwargs: {kwargs}')
 
         try:
             path = request.GET['path']
@@ -21,13 +23,16 @@ class MediaView(View):
             return HttpResponseBadRequest("You must provide a 'path' parameter.")
 
         media_path = os.path.join(settings.MEDIA_ROOT, path)
+        print(f'media_path: {media_path}')
 
         try:
             with open(media_path, 'rb') as file:
                 content_type = mime.from_file(media_path)
+                print(f'content_type: {content_type}')
                 response = HttpResponse(file.read(), content_type=content_type)
                 return response
         except:
+            print(f'Error: {path}')
             return HttpResponseRedirect(path)
 
 class CidadeViewSet(viewsets.ModelViewSet):

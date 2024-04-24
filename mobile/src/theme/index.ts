@@ -1,5 +1,7 @@
 export const THEME = {
     COLORS: {
+        BLACK: "#000000",
+        WHITE: "#FFFFFF",
         DARK: "#1F262A",
         LIGHT: "#F8F8F8",
         DANGER: "#FF4040",

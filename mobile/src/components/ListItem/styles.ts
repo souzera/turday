@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { THEME } from '../../theme';
 
 const styles = StyleSheet.create({
     container:{
@@ -32,6 +33,29 @@ const styles = StyleSheet.create({
     },
     desc: {
         fontSize: 12,
+    },
+    modalContent:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        width: '90%',
+        height: '100%',
+    },
+    modalHeader:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        width: '100%',
+        height: 50,
+        marginTop: 20,
+        gap: 20,
+    },
+    modalHeaderTitle:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: THEME.COLORS.DARKGRAY,
     }
 })
 
