@@ -3,8 +3,9 @@ import { CategoryButtonProps } from "./interface";
 import styles from "./styles";
 import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "../../theme";
+import { useNavigation } from "@react-navigation/native";
 
-export default function CategoryButton(props: CategoryButtonProps) {
+export default function CategoryButton({nome, icon, ...rest}: CategoryButtonProps) {
 
   // STATES
 
@@ -12,15 +13,11 @@ export default function CategoryButton(props: CategoryButtonProps) {
 
   // METHODS
 
-  const onPressButton = () => {
-    console.log(`Clicou no botão ${props.nome.toUpperCase()}`);
-  };
-
   return (
-    <TouchableOpacity style={styles.container} onPress={onPressButton}>
+    <TouchableOpacity style={styles.container}{...rest}>
       <View style={styles.row}>
-        {props.icon ? <FontAwesome name={props.icon} size={20} color={THEME.COLORS.DARKGRAY}/> : null}
-        <Text style={styles.text}>{props.nome}</Text>
+        {icon ? <FontAwesome name={icon} size={20} color={THEME.COLORS.DARKGRAY}/> : null}
+        <Text style={styles.text}>{nome}</Text>
       </View>
     </TouchableOpacity>
   );
