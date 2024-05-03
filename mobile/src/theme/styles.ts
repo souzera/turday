@@ -10,9 +10,21 @@ export const rootStyles = StyleSheet.create({
     height: "100%",
     gap: 20,
   },
+  row:{
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 10,
+  },
+  collumn:{
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+  },
   modalContent: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
     width: "90%",

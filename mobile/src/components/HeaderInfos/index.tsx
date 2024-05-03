@@ -2,7 +2,8 @@ import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 import { THEME } from "../../theme";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getWeather } from "../../services/weather";
 
 export function HeaderInfo() {
 
@@ -10,6 +11,12 @@ export function HeaderInfo() {
 
   const [cidade, setCidade] = useState("Triunfo-PE");
   const [temperatura, setTemperatura] = useState("33℃");
+
+  // LIFECYCLE
+
+  useEffect(() => {
+    console.log("FETCH WEATHER...");
+  },[])
 
   // METHODS
 

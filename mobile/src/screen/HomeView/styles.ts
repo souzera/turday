@@ -1,13 +1,16 @@
 import { StyleSheet} from "react-native";
+import { rootStyles } from "../../theme/styles";
+import { THEME } from "../../theme";
 
 export const styles = StyleSheet.create({
-    container: {
+    ...rootStyles,
+    center: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 5,
+        gap: 20,
     },
-    div:{
+    view:{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -15,8 +18,9 @@ export const styles = StyleSheet.create({
         width: '80%',
         gap: 20,
     },
-    text: {
-        fontSize: 20,
+    title: {
+        fontSize: THEME.FONT_SIZE.MD,
         fontWeight: 'bold',
+        color: THEME.COLORS.DARKGRAY,
     },
 });

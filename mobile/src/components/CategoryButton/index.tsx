@@ -3,7 +3,6 @@ import { CategoryButtonProps } from "./interface";
 import styles from "./styles";
 import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "../../theme";
-import { useNavigation } from "@react-navigation/native";
 
 export default function CategoryButton({nome, icon, ...rest}: CategoryButtonProps) {
 

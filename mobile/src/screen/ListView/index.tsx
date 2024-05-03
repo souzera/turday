@@ -13,27 +13,41 @@ import { ListItemProps } from "../../components/ListItem/interface";
 export default function ListView() {
   // STATES
 
-  const [search, setSearch] = useState<string>("");
-  const [list, setList] = useState<ListItemProps[]>([
-    modelListItem,
-    modelListItem,
-    modelListItem,
-    modelListItem,
-    modelListItem,
-    modelListItem,
-    modelListItem,
-  ]);
+  //temporário
+  const listaCompleta:ListItemProps[] = [
+    {
+      id: "",
+      titulo: "PAPO PIZZA",
+      image: "",
+      link: ""
+    },
+    {
+      id: "",
+      titulo: "THEATRO CINEMA GUARANY",
+      image: "",
+      link: ""
+    },
+    {
+      id: "",
+      titulo: "CASA DA CULTURA",
+      image: "",
+      link: ""
+    }
+  ]
+
+  const [list, setList] = useState<ListItemProps[]>(listaCompleta);
 
   // LIFECYCLE
 
   useEffect(() => {
-    console.log(search);
-  },[search])
+    console.log(`FETCH LIST... ${list}`);
+  },[list])
 
   // METHODS
 
   const onChangeText = (text: string) => {
-    setSearch(text);
+    setList(listaCompleta.filter((item) => item.titulo.toLocaleLowerCase().includes(text.toLocaleLowerCase())));
+    if (text === "") {setList(listaCompleta);}
   }
 
   //TODO: Criar FlatList para exibir a lista de itens

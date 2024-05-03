@@ -1,4 +1,6 @@
-export interface ListItemProps {
+import { TouchableOpacityProps } from "react-native";
+
+export interface ListItemProps extends TouchableOpacityProps{
     id: string;
     titulo: string;
     descricao?: string;
