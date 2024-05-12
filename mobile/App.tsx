@@ -25,5 +25,9 @@ export default function App() {
     Montserrat_900Black,
   });
 
-  return <>{fontsLoaded ? <Routes /> : <Loading />}</>;
+  return (
+    <>
+      <Routes />
+    </>
+  );
 }

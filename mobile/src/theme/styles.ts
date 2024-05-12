@@ -8,6 +8,7 @@ export const rootStyles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     height: "100%",
+    width: "100%",
     gap: 20,
   },
   row:{
