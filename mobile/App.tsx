@@ -1,33 +1,20 @@
-import {
-  useFonts,
-  Montserrat_400Regular,
-  Montserrat_600SemiBold,
-  Montserrat_700Bold,
-  Montserrat_900Black,
-} from "@expo-google-fonts/montserrat";
+import { useEffect, useState } from "react";
 import { Routes } from "./src/routes";
-import Loading from "./src/components/Loading";
-import { StyleSheet } from "react-native";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+import { requestLocationPermission } from "./src/services/location";
+import { LocationContextProvider } from "./src/context/location";
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    Montserrat_400Regular,
-    Montserrat_600SemiBold,
-    Montserrat_700Bold,
-    Montserrat_900Black,
-  });
+  // STATES
+
+  // LIFECYCLE
+
+  // METHODS
 
   return (
     <>
-      <Routes />
+      <LocationContextProvider>
+        <Routes />
+      </LocationContextProvider>
     </>
   );
 }

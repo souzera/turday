@@ -20,6 +20,8 @@ export const rootStyles = StyleSheet.create({
   },
   collumn:{
     display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
     flexDirection: "column",
     gap: 10,
   },

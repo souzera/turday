@@ -5,8 +5,26 @@ import Carrosel from "../../components/Carousel";
 import { HeaderInfo } from "../../components/HeaderInfos";
 import { AntDesign } from "@expo/vector-icons";
 import { THEME } from "../../theme";
+import useLocation from "../../context/location";
+import { useEffect } from "react";
+import { requestLocationPermission } from "../../services/location";
 
 export default function HomeView() {
+
+  // STATES
+
+  const { setLocation } = useLocation();
+
+  // LIFECYCLE
+
+  useEffect(() => {
+    requestLocationPermission().then((response) => {
+      setLocation(response)
+    })
+  }, [])
+
+  // METHODS
+
   return (
     <View style={styles.center}>
       <View>

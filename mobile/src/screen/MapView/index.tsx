@@ -4,18 +4,22 @@ import { styles } from "./styles";
 import { HeaderInfo } from "../../components/HeaderInfos";
 import { FontAwesome } from "@expo/vector-icons";
 import { MapComponent } from "../../components/MapComponent";
+import useLocation from "../../context/location";
 
 // TODO: implementar funcionalidades no mapa 
 
 export default function MapView() {
+  
   // STATES
 
+  const { location } = useLocation();
   const [search, setSearch] = useState<string>("");
 
   // LIFECYCLE
 
   useEffect(() => {
     console.log(search);
+    console.log(location);
   }, [search]);
 
   // METHODS
