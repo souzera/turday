@@ -3,14 +3,11 @@ import { THEME } from '../../theme';
 import { rootStyles } from '../../theme/styles';
 
 const styles = StyleSheet.create({
-    container:{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        gap: 5,
-        width: 150,
-        marginHorizontal: 5,
+    ...rootStyles,
+    listItemContainer:{
+        flex:1,
+        width: 180,
+        padding: 10,
     },
     imageContent:{
         width:150,
@@ -35,29 +32,7 @@ const styles = StyleSheet.create({
     desc: {
         fontSize: 12,
     },
-    modalContent:{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        width: '90%',
-        height: '100%',
-    },
-    modalHeader:{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        width: '100%',
-        height: 50,
-        marginTop: 20,
-        gap: 20,
-    },
-    modalHeaderTitle:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: THEME.COLORS.DARKGRAY,
-    }
+    
 })
 
 export default styles;

@@ -71,7 +71,8 @@ export default function CategoryView() {
                 color={THEME.COLORS.DARKGRAY}
               />
             </TouchableOpacity>
-            <Text>{selectedCategory.toUpperCase()}</Text>
+            <Text style={styles.modalHeaderTitle}>{selectedCategory.toUpperCase()}</Text>
+            <View></View>
           </View>
 
           <View>{selectedCategory === "guias" ? <AdvisorView /> : null}</View>

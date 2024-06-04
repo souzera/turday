@@ -4,7 +4,7 @@ const LocationContext = createContext<any>({});
 
 export function LocationContextProvider({children}: any){
 
-    const [location, setLocation] = useState<any>(null);
+    const [location, setLocation] = useState<any>({});
 
     return (
         <LocationContext.Provider value={{location, setLocation}}>

@@ -25,14 +25,15 @@ export function ListItem(props: ListItemProps) {
 
   return (
     <TouchableOpacity onPress={handlePress}>
-      <View style={styles.container}>
+      <View style={styles.listItemContainer}>
         <View style={styles.imageContent}>
           <Image source={{ uri: props.image }} style={styles.image} />
         </View>
         <Text style={styles.titulo}>{props.titulo}</Text>
         <View style={styles.descContainer}>
           {props.icon ? (
-            <FontAwesome name={props.icon} size={16} color={"gray"} />
+            //TODO: corrigir erro parar receber o icone
+            <FontAwesome name="map-marker" size={16} color={"gray"} />
           ) : null}
           <Text numberOfLines={2} style={styles.desc}>
             {props.descricao}
@@ -50,9 +51,10 @@ export function ListItem(props: ListItemProps) {
                 color={THEME.COLORS.DARKGRAY}
               />
             </TouchableOpacity>
-            <Text style={styles.modalHeaderTitle}>{props.titulo}</Text>
+            <Text style={styles.modalHeaderTitle} numberOfLines={1}>{props.titulo}</Text>
+            <View></View>
           </View>
-          <DetailsView entity={1} />
+          <DetailsView id_entity={props.id} type={props.type} />
         </View>
       </Modal>
     </TouchableOpacity>

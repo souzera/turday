@@ -6,5 +6,6 @@ export interface ListItemProps extends TouchableOpacityProps{
     descricao?: string;
     image?: string;
     link: string;
-    icon?: string;
+    icon?: string | undefined;
+    type: string;
 }

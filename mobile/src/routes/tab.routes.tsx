@@ -5,21 +5,23 @@ import HomeView from "../screen/HomeView";
 import ListView from "../screen/ListView";
 import MapView from "../screen/MapView";
 import CategoryView from "../screen/CategoryView";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { FontAwesome } from '@expo/vector-icons'
 import { THEME } from "../theme";
 import EventsView from "../screen/EventsView";
+import useLocation from "../context/location";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 export function TabRoutes() {
+
   return (
     <NavigationContainer  independent={true}>
       <Navigator initialRouteName="Home" screenOptions={
         ({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName = "";
+            let iconName = "key";
 
             if (route.name === "Home") {
               iconName = "home";

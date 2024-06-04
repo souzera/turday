@@ -1,13 +1,21 @@
 import { StyleSheet } from "react-native";
+import { rootStyles } from "../../theme/styles";
+import { THEME } from "../../theme";
 
 export const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#fff'
+    ...rootStyles,
+    collumnDetailsView: {
+        width: "100%",
     },
-    header:{
-        marginTop: 20,
-    }
+    imageDetailsView: {
+        width: '100%',
+        height: 260,
+    },
+    titleDetailsView: {
+        fontSize: THEME.FONT_SIZE.LG,
+        fontWeight: "bold",
+    },
+    descriptionDetailsView: {
+        fontSize: THEME.FONT_SIZE.MD,
+    },
 });

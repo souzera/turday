@@ -1,13 +1,9 @@
 import { StyleSheet} from "react-native";
 import { THEME } from "../../theme";
+import { rootStyles } from "../../theme/styles";
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        gap: 20,
-    },
+    ...rootStyles,
     header:{
         marginTop: '20%',
     },

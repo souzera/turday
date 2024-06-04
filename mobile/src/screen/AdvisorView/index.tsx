@@ -8,33 +8,35 @@ import { getGuias } from "../../services/api/guias/requests";
 import { Guia } from "../../services/api/guias/type";
 
 export default function AdvisorView() {
+  // STATES
 
-    // STATES
+  const [advisors, setAdvisors] = useState<Guia[]>([]); // [Guia
 
-    const [advisors, setAdvisors] = useState<Guia[]>([]) // [Guia
+  // LIFECYCLE
 
-    // LIFECYCLE
+  useEffect(() => {
+    getGuias().then(({ data }: any) => {
+      setAdvisors(data);
+    });
+  }, []);
 
-    useEffect(() => {
-        getGuias().then(({data}:any) => {
-            setAdvisors(data)
-        })
-    },[])
+  // METHODS
 
-    // METHODS
-
-    
-
-    return (
-        <>
-            <View style={styles.container}>
-                <View >
-                    <FlatList 
-                        data={advisors}
-                        renderItem={({item}) => <AdvisorButton nome={item.nome} contato={item.contato} avatar={item.avatar.url}/>}
-                    />
-                </View>
-            </View>
-        </>
-    )
+  return (
+    <>
+    <View style={{...styles.container,}}>
+      <FlatList
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+        data={advisors}
+        renderItem={({ item }) => (
+          <AdvisorButton
+            nome={item.nome}
+            contato={item.contato}
+            avatar={item.avatar.url}
+          />
+        )}
+      />
+    </View>
+    </>
+  );
 }

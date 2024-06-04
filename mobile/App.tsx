@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import { Routes } from "./src/routes";
-import { requestLocationPermission } from "./src/services/location";
-import { LocationContextProvider } from "./src/context/location";
+import MockProviders from "./mock/providers";
 
 export default function App() {
   // STATES
@@ -12,9 +10,9 @@ export default function App() {
 
   return (
     <>
-      <LocationContextProvider>
+      <MockProviders>
         <Routes />
-      </LocationContextProvider>
+      </MockProviders>
     </>
   );
 }

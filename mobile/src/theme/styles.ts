@@ -10,15 +10,17 @@ export const rootStyles = StyleSheet.create({
     height: "100%",
     width: "100%",
     gap: 20,
+    //TODO: REMOVER O BACKGROUND COLOR
+    //backgroundColor: THEME.COLORS.INFO,
   },
-  row:{
+  row: {
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
     gap: 10,
   },
-  collumn:{
+  collumn: {
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -27,26 +29,30 @@ export const rootStyles = StyleSheet.create({
   },
   modalContent: {
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    width: "90%",
+    top: 40,
+    gap: 20,
+    width: "100%",
     height: "100%",
+    paddingHorizontal: 20,
+    textAlign: "left",
   },
+  //TODO: corrigir borda superior do modal
   modalHeader: {
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    width: "80%",
+    width: "90%",
     height: 50,
-    paddingVertical: 10,
-    marginTop: 50,
+    marginTop: 20,
     gap: 20,
+    padding: 0,
   },
   modalHeaderTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: THEME.FONT_SIZE.LG,
     color: THEME.COLORS.DARKGRAY,
   },
 });

@@ -5,6 +5,8 @@ import { HeaderInfo } from "../../components/HeaderInfos";
 import { FontAwesome } from "@expo/vector-icons";
 import { MapComponent } from "../../components/MapComponent";
 import useLocation from "../../context/location";
+import { getPontosTuristicos } from "../../services/api/pontosturisticos/requests";
+import { Pointer } from "../../components/MapComponent/interface";
 
 // TODO: implementar funcionalidades no mapa 
 
@@ -14,12 +16,23 @@ export default function MapView() {
 
   const { location } = useLocation();
   const [search, setSearch] = useState<string>("");
+  const [pointers, setPointers] = useState<Pointer[]>([]);
 
   // LIFECYCLE
 
   useEffect(() => {
-    console.log(search);
-    console.log(location);
+    //console.log(search);
+    //console.log(location);
+
+    getPontosTuristicos().then(({data}:any) => {
+      data.forEach((ponto: any) => {
+        setPointers([...pointers, {
+          latitude: ponto.latitude,
+          longitude: ponto.longitude,
+          title: ponto.nome,
+        }]);
+      })
+    });
   }, [search]);
 
   // METHODS
@@ -44,7 +57,7 @@ export default function MapView() {
         </View>
 
         <View style={styles.mapContainer}>
-          <MapComponent/>
+          <MapComponent pointers={pointers}/>
         </View>
       </View>
     </>

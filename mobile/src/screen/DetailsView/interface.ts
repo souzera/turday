@@ -1,3 +1,4 @@
 export interface DetailsViewProps {
-    entity: any;
+    id_entity: string;
+    type: string;
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { styles } from "./styles";
 
-import { View, FlatList, TextInput } from "react-native";
+import { View, FlatList, TextInput, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { ListItem } from "../../components/ListItem";
 import { HeaderInfo } from "../../components/HeaderInfos";
@@ -10,6 +10,8 @@ import { HeaderInfo } from "../../components/HeaderInfos";
 import { ListItemProps } from "../../components/ListItem/interface";
 import { getPontosTuristicos } from "../../services/api/pontosturisticos/requests";
 import { PontoTuristico } from "../../services/api/pontosturisticos/type";
+import useLocation from "../../context/location";
+import { validateUrlImage } from "../../util/validateUrlImage";
 
 export default function ListView() {
   // STATES
@@ -22,20 +24,20 @@ export default function ListView() {
       descricao: "Praça Carolino Campos",
       image: "",
       link: "",
+      type: "pontoTuristico",
     },
   ];
 
   const [list, setList] = useState<PontoTuristico[]>([]);
+  const { location } = useLocation();
 
   // LIFECYCLE
 
   useEffect(() => {
-    getPontosTuristicos().then(
-      (response: any) => {
-        setList(response.data);
-        console.log(response.data[3]);
-      }
-    );
+    console.log("location", location);
+    getPontosTuristicos().then((response: any) => {
+      setList(response.data);
+    });
   }, []);
 
   // METHODS
@@ -68,17 +70,26 @@ export default function ListView() {
           style={styles.input}
         />
       </View>
-      <View style={styles.div}>
-        <FlatList
-          numColumns={2}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
-          scrollToOverflowEnabled={true}
-          showsVerticalScrollIndicator={true}
-          data={list}
-          renderItem={({ item }) => <ListItem id={item.id} icon="map-marker" titulo={item.nome} image={item.imagens[0].url} link={""} descricao={item.endereco}/>}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
+
+      <FlatList
+        numColumns={2}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        scrollToOverflowEnabled={true}
+        showsVerticalScrollIndicator={false}
+        data={list}
+        renderItem={({ item }) => (
+          <ListItem
+            id={item.id}
+            icon="map-marker"
+            titulo={item.nome}
+            image={validateUrlImage(item.imagens[0].url)}
+            link={""}
+            descricao={item.endereco}
+            type="pontoTuristico"
+          />
+        )}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 }
