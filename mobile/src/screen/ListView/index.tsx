@@ -29,6 +29,7 @@ export default function ListView() {
   ];
 
   const [list, setList] = useState<PontoTuristico[]>([]);
+  const [search, setSearch] = useState<PontoTuristico[]>([]);
   const { location } = useLocation();
 
   // LIFECYCLE
@@ -37,21 +38,24 @@ export default function ListView() {
     console.log("location", location);
     getPontosTuristicos().then((response: any) => {
       setList(response.data);
+      setSearch(response.data);
     });
   }, []);
 
   // METHODS
 
-  const onChangeText = (text: string) => {
-    setList(
+  const onChangeText = async (text: string) => {
+    
+    setSearch(
       list.filter((item) =>
         (item.nome + " " + item.descricao)
           .toLocaleLowerCase()
           .includes(text.toLocaleLowerCase())
       )
     );
+
     if (text === "") {
-      setList(list);
+      setSearch(list);
     }
   };
 
@@ -76,7 +80,7 @@ export default function ListView() {
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         scrollToOverflowEnabled={true}
         showsVerticalScrollIndicator={false}
-        data={list}
+        data={search}
         renderItem={({ item }) => (
           <ListItem
             id={item.id}
