@@ -1,26 +1,24 @@
 import axios from "axios";
 import options from "../constants/options";
 
-export async function getPontosTuristicos() {
+export async function getServicos() {
   return await axios
-    .get(`${options.API_URL}pontoturistico/`)
+    .get(`${options.API_URL}servico/`)
     .then((response) => {
       return response;
     })
     .catch((error) => {
-      console.error(error);
       return "❌ ERROR: " + error;
     });
 }
 
-export async function getPontoTuristico(id: string) {
+export async function getServico(id: string) {
   return await axios
-    .get(`${options.API_URL}pontoturistico/${id}`)
+    .get(`${options.API_URL}servico/${id}`)
     .then((response) => {
       return response;
     })
     .catch((error) => {
-      console.error(error);
       return "❌ ERROR: " + error;
     });
 }
