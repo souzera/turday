@@ -13,6 +13,7 @@ router.register(r'pontoturistico', PontoTuristicoViewSet, basename='pontoturisti
 router.register(r'evento', EventoViewSet, basename='evento')
 router.register(r'guia', GuiaViewSet, basename='guia')
 router.register(r'servico', ServicoViewSet, basename='servico')
+router.register(r'categoria', CategoriaViewSet, basename='categorias')
 
 urlpatterns = [
     path('', include(router.urls)),

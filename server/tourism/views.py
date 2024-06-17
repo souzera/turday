@@ -54,4 +54,8 @@ class GuiaViewSet(viewsets.ModelViewSet):
 class ServicoViewSet(viewsets.ModelViewSet):
     serializer_class = ServicoSerializer
     queryset = Servico.objects.all()
+
+class CategoriaViewSet(viewsets.ModelViewSet):
+    serializer_class = CategoriaSerializer
+    queryset = Categoria.objects.all()
     
