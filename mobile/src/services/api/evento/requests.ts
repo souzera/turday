@@ -1,26 +1,24 @@
 import axios from "axios";
 import options from "../constants/options";
 
-export async function getGuias() {
+export async function getEventos() {
   return await axios
-    .get(`${options.API_URL}guia/`)
+    .get(`${options.API_URL}evento`)
     .then((response) => {
       return response;
     })
     .catch((error) => {
-      console.error(error);
       return "❌ ERROR: " + error;
     });
 }
 
-export async function getGuiaById(id: string) {
+export async function getEvento(id: string) {
   return await axios
-    .get(`${options.API_URL}guia/${id}`)
+    .get(`${options.API_URL}evento/${id}`)
     .then((response) => {
       return response;
     })
     .catch((error) => {
-      console.error(error);
       return "❌ ERROR: " + error;
     });
 }
