@@ -5,12 +5,11 @@ import HomeView from "../screen/HomeView";
 import ListView from "../screen/ListView";
 import MapView from "../screen/MapView";
 import CategoryView from "../screen/CategoryView";
-import React, { useEffect } from "react";
+import React, {  } from "react";
 
 import { FontAwesome } from '@expo/vector-icons'
 import { THEME } from "../theme";
 import EventsView from "../screen/EventsView";
-import useLocation from "../context/location";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -35,6 +34,7 @@ export function TabRoutes() {
               iconName = "search";
             }
 
+            // @ts-ignore
             return <FontAwesome name={iconName} size={size} color={color} />;
           },
           tabBarLabel: () => {return null},

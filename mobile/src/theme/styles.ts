@@ -55,4 +55,21 @@ export const rootStyles = StyleSheet.create({
     fontSize: THEME.FONT_SIZE.LG,
     color: THEME.COLORS.DARKGRAY,
   },
+  inputGroup: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
+    backgroundColor: THEME.COLORS.LIGTHGRAY,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    width: "80%",
+  },
+  input: {
+    width: "80%",
+    height: 40,
+    borderRadius: 5,
+    padding: 10,
+  },
 });
