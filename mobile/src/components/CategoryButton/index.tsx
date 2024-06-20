@@ -4,8 +4,11 @@ import styles from "./styles";
 import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "../../theme";
 
-export default function CategoryButton({nome, icon, ...rest}: CategoryButtonProps) {
-
+export default function CategoryButton({
+  nome,
+  icon,
+  ...rest
+}: CategoryButtonProps) {
   // STATES
 
   // LIFECYCLE
@@ -13,9 +16,12 @@ export default function CategoryButton({nome, icon, ...rest}: CategoryButtonProp
   // METHODS
 
   return (
-    <TouchableOpacity style={styles.container}{...rest}>
+    <TouchableOpacity style={styles.container} {...rest}>
       <View style={styles.row}>
-        {icon ? <FontAwesome name={icon} size={20} color={THEME.COLORS.DARKGRAY}/> : null}
+        {icon ? (
+          //@ts-ignore
+          <FontAwesome name={icon} size={20} color={THEME.COLORS.DARKGRAY} />
+        ) : null}
         <Text style={styles.text}>{nome}</Text>
       </View>
     </TouchableOpacity>

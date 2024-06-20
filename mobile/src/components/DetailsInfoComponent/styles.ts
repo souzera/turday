@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     titleDetailsInfo: {
-        fontSize: THEME.FONT_SIZE.MD
+        fontSize: THEME.FONT_SIZE.MD,
+        fontWeight: "bold"
     },
     descriptionDetailsInfo: {
         fontSize: THEME.FONT_SIZE.SM

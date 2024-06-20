@@ -5,5 +5,5 @@ export interface Pointer {
 }
 
 export interface MapComponentProps {
-    pointers?: Pointer[],
+    pointer: Pointer,
 }
