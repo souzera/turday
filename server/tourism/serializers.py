@@ -47,7 +47,7 @@ class EventoSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Evento
-        fields = ('id', 'nome', 'cidade', 'descricao', 'data_inicio', 'date_fim', 'infos', 'imagens')
+        fields = ('id', 'nome', 'cidade', 'descricao', 'abertura', 'encerramento', 'infos', 'imagens')
 
 class GuiaSerializer(serializers.ModelSerializer):
 

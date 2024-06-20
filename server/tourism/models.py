@@ -64,8 +64,8 @@ class Evento(models.Model):
     nome = models.CharField(max_length=100)
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     descricao = models.TextField()
-    data_inicio = models.DateTimeField()
-    data_fim = models.DateTimeField(null=True, blank=True)
+    abertura = models.DateTimeField(null=True, blank=True)
+    encerramento = models.DateTimeField(null=True, blank=True)
     infos = models.ManyToManyField(Info, blank=True, related_name='eventos')
     imagens = models.ManyToManyField(Imagem, blank=True, related_name='eventos')
 
