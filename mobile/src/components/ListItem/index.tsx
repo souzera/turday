@@ -51,7 +51,11 @@ export function ListItem(props: ListItemProps) {
                 color={THEME.COLORS.DARKGRAY}
               />
             </TouchableOpacity>
-            <Text style={styles.modalHeaderTitle} numberOfLines={1}>{props.titulo}</Text>
+            <View style={{ width: 280, display:'flex', alignItems:"center"}}>
+              <Text style={{ ...styles.modalHeaderTitle }} numberOfLines={1}>
+                {props.titulo}
+              </Text>
+            </View>
             <View></View>
           </View>
           <DetailsView id_entity={props.id} type={props.type} />
