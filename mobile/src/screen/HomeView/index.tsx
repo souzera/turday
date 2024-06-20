@@ -35,6 +35,7 @@ export default function HomeView() {
     setList([]);
 
     getPontosTuristicos().then(({ data }: any) => {
+      data = data.slice(0, 4);
       data.map((item: any) => {
         const newItem = {
           id: item.id,
@@ -49,6 +50,7 @@ export default function HomeView() {
     });
 
     getServicos().then(({ data }: any) => {
+      data = data.slice(0, 4);
       data.map((item: any) => {
         const newItem = {
           id: item.id,

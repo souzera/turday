@@ -1,12 +1,15 @@
-import { Text, TouchableOpacity, View, Image } from "react-native";
+import { Text, TouchableOpacity, View, Image, ScrollView } from "react-native";
 
 import { DetailsViewProps } from "./interface";
 import { styles } from "./styles";
 import { useEffect, useState } from "react";
 import { getPontoTuristico } from "../../services/api/pontosturisticos/requests";
-import { PontoTuristico } from "../../services/api/pontosturisticos/type";
 import { DetailsInfoComponents } from "../../components/DetailsInfoComponent";
 import { getServico } from "../../services/api/servicos/requests";
+import EnderecoButton from "../../components/EnderecoButton";
+import { validateUrlImage } from "../../util/validateUrlImage";
+import { getEvento } from "../../services/api/evento/requests";
+import { formatterDateStringDDMM } from "../../util/dateConverter";
 
 // TODO: implementar a tela de detalhes
 
@@ -22,32 +25,51 @@ export default function DetailsView(props: DetailsViewProps) {
 
     switch (props.type) {
       case "pontoTuristico":
-        getPontoTuristico(props.id_entity).then(({ data }: any) => {
+        const findPontoTuristico = async () => await getPontoTuristico(props.id_entity).then(({ data }: any) => {
           setEntity(data);
         });
+
+        findPontoTuristico()
         break;
       case 'servico':
-        getServico(props.id_entity).then(({ data }: any) => {
+        const findServico = async() => await getServico(props.id_entity).then(({ data }: any) => {
           setEntity(data);
         });
+
+        findServico();
         break;
+      case 'evento':
+        const findEvento = async() => await getEvento(props.id_entity).then(({ data }: any) => {
+          setEntity(data);
+        })
+
+        findEvento();
     }
   }, []);
 
   // METHODS
-  console.log("entity", entity);
 
   return (
-    <>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         {entity.imagens && (
           <Image
             source={{
-              uri: entity.imagens[0].url,
+              uri: validateUrlImage(entity.imagens[0].url),
             }}
             style={styles.imageDetailsView}
           />
         )}
+
+        {entity.endereco && <EnderecoButton endereco={entity.endereco} latitude={entity.latitude} longitude={entity.longitude}/>}
+
+        {props.type === 'evento' &&
+          <View style={{display:"flex", flexDirection:"row", justifyContent:"space-between", gap:40}}>
+            {entity.abertura && <DetailsInfoComponents title={"Abertura"} description={formatterDateStringDDMM(entity.abertura)} icon={"calendar-plus-o"}/>}
+            {entity.abertura && <DetailsInfoComponents title={"Encerramento"} description={formatterDateStringDDMM(entity.encerramento)} icon={"calendar-check-o"} />}
+          </View>
+        }
+
         <View style={styles.collumnDetailsView}>
           {entity.descricao && (
             <Text style={styles.descriptionDetailsView}>
@@ -59,13 +81,14 @@ export default function DetailsView(props: DetailsViewProps) {
             entity.infos.map((info: any) => {
               return (
                 <DetailsInfoComponents
-                  title={info.titulo}
+                  title={info.title}
                   description={info.descricao}
                 />
               );
             })}
         </View>
+      <View style={{height:100, width:"100%"}}/>
       </View>
-    </>
+    </ScrollView>
   );
 }

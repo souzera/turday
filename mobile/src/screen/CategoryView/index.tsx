@@ -1,27 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, View, Text, Modal, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import { HeaderInfo } from "../../components/HeaderInfos";
 import CategoryButton from "../../components/CategoryButton";
-import { useNavigation } from "@react-navigation/native";
 import AdvisorView from "../AdvisorView";
 import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "../../theme";
+import { getCategorias } from "../../services/api/categoria/requests";
+import ServiceListComponent from "../../components/ServiceListComponent";
 
 export default function CategoryView() {
   // STATES
 
   //TODO: Implementar a tipagem das categorias de acordo com o backend
   const [modalVisible, setModalVisible] = useState(false);
-  const [categorias, setCategorias] = useState([
-    "Restaurante",
-    "Hotel",
-    "Passeio",
-    "Transporte",
-  ]);
+  const [categorias, setCategorias] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Guias");
 
   // LIFECYCLE
+
+  useEffect(() => {
+    const getCategoriaList = async () => {
+      await getCategorias().then(({data}:any) => {
+        setCategorias(data);
+      });
+    }
+
+    getCategoriaList();
+    console.log("Categorias: ", categorias);
+  }, [])
 
   // METHODS
 
@@ -54,7 +61,7 @@ export default function CategoryView() {
           <FlatList
             style={{ width: "100%" }}
             data={categorias}
-            renderItem={({ item }) => <CategoryButton nome={item} onPress={() => onCategoryPress(item)}/>}
+            renderItem={({ item }:any) => <CategoryButton nome={item.nome} icon={item.icon} onPress={() => onCategoryPress(item.nome)}/>}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
             showsVerticalScrollIndicator={false}
           />
@@ -75,7 +82,7 @@ export default function CategoryView() {
             <View></View>
           </View>
 
-          <View>{selectedCategory === "guias" ? <AdvisorView /> : null}</View>
+          <View>{selectedCategory === "guias" ? <AdvisorView /> : <ServiceListComponent category={selectedCategory}/>}</View>
         </View>
       </Modal>
     </>

@@ -22,7 +22,7 @@ export default function MapView() {
 
   useEffect(() => {
     //console.log(search);
-    //console.log(location);
+    console.log(`My Location: ${location.latitude}, ${location.longitude}`);
 
     getPontosTuristicos().then(({data}:any) => {
       data.forEach((ponto: any) => {
@@ -57,7 +57,7 @@ export default function MapView() {
         </View>
 
         <View style={styles.mapContainer}>
-          <MapComponent pointers={pointers}/>
+          <MapComponent pointer={{latitude: location.latitude, longitude:location.longitude, title:"Você está aqui!"}}/>
         </View>
       </View>
     </>
