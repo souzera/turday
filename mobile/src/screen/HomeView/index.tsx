@@ -1,20 +1,20 @@
 import { styles } from "./styles";
 import { FlatList, ScrollView, Text, View } from "react-native";
 import { TurdayTitle } from "../../components/Title";
-import Carrosel from "../../components/Carousel";
+import EventsCarousel from "../../components/EventsCarousel";
 import { HeaderInfo } from "../../components/HeaderInfos";
 import { AntDesign } from "@expo/vector-icons";
 import { THEME } from "../../theme";
 import useLocation from "../../context/location";
 import { useEffect, useState } from "react";
 import { requestLocationPermission } from "../../services/location";
-import ListView from "../ListView";
 import { validateUrlImage } from "../../util/validateUrlImage";
 import { ListItem } from "../../components/ListItem";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 import { getPontosTuristicos } from "../../services/api/pontosturisticos/requests";
 import { getServicos } from "../../services/api/servicos/requests";
 import { HomeListItemProps } from "./interface";
+import { Evento } from "../../services/api/evento/type";
+import { getEventos } from "../../services/api/evento/requests";
 
 export default function HomeView() {
   // STATES
@@ -23,6 +23,7 @@ export default function HomeView() {
 
   //TODO: implementar um tipo para essa lista na home view
   const [list, setList] = useState<HomeListItemProps[]>([]); // [PontoTuristico]
+  const [detaques, setDestaques] = useState<Evento[]>([]); // [Eventos]
 
   // LIFECYCLE
 
@@ -63,6 +64,11 @@ export default function HomeView() {
         setList((prev) => [...prev, newItem]);
       });
     });
+
+    getEventos().then(({ data }: any) => {
+      data = data.slice(0, 3);
+      setDestaques(data);
+    })
   }, []);
 
   // METHODS
@@ -77,7 +83,7 @@ export default function HomeView() {
 
         <View>
           <View style={styles.collumn}>
-            <View style={styles.row}>
+            <View style={{...styles.row, justifyContent:"flex-start", alignItems:"flex-start", width:"80%"}}>
               <AntDesign
                 name="pushpin"
                 size={16}
@@ -85,7 +91,7 @@ export default function HomeView() {
               />
               <Text>Destaques</Text>
             </View>
-            <Carrosel />
+            <EventsCarousel events={detaques} />
           </View>
 
           <View style={{ ...styles.container, marginTop: 10 }}>

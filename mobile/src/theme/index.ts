@@ -13,9 +13,9 @@ export const THEME = {
     BLUE: "#1E90FF",
   },
   FONT_FAMILY: {
-    REGULAR: "Montserrat-Regular",
-    BOLD: "Montserrat-Bold",
-    SEMI_BOLD: "Montserrat-SemiBold",
+    REGULAR: "Roboto",
+    BOLD: "Roboto",
+    SEMI_BOLD: "Roboto",
   },
   FONT_SIZE: {
     XS: 10,

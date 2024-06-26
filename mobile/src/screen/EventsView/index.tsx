@@ -8,32 +8,52 @@ import { Evento } from "../../services/api/evento/type";
 import { getEventos } from "../../services/api/evento/requests";
 import EventoButtonComponent from "../../components/EventoButtonComponent";
 import { FontAwesome } from "@expo/vector-icons";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export default function EventsView() {
+
+
+  // METHODS
+
+  // TODO: construção de string de busca
+  const onChangeText = async (text: string) => {
+    setSearch(text);
+  };
+
+  const findEventos = async () => {
+    await getEventos().then(({ data }: any) => {
+      setEventos(data);
+    });
+
+  };
+
   // STATES
 
   const [eventos, setEventos] = useState<Evento[]>([]); // Evento[]
-
+  const [search, setSearch] = useState(""); // string[]
+  const [filtered, setFiltered] = useState<Evento[]>([]); // Evento[]
   // LIFECYCLE
 
   useEffect(() => {
     // GET EVENTOS
-
-    const findEventos = async () => {
-      await getEventos().then(({ data }: any) => {
-        console.log("data", data);
-        setEventos(data);
-      });
-    };
-
-    findEventos();
+    findEventos()
+    getEventos().then(({ data }: any) => {
+      setFiltered(data);
+    });
   }, []);
 
-  // METHODS
+  useEffect(() => {
+    console.log(search);
+    setFiltered(
+      eventos.filter((evento) =>
+        evento.nome.toLowerCase().includes(search.toLowerCase())
+      )
+    );
 
-  const onChangeText = async (text: string) => {
-    console.log("text", text);
-  };
+    if (search === "") {
+      setFiltered(eventos);
+    }
+  }, [search]); // string[]
 
   return (
     <ScrollView style={{ marginTop: 60 }}>
@@ -58,7 +78,8 @@ export default function EventsView() {
         <View style={{ width: "80%" }}>
           <FlatList
             style={{ width: "100%", height: "100%" }}
-            data={eventos}
+            data={filtered}
+            ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             renderItem={({ item }) => (
               <EventoButtonComponent
                 id={item.id}
