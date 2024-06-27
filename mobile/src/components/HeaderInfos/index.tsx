@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 import { THEME } from "../../theme";
@@ -14,6 +14,7 @@ export function HeaderInfo(props: HeaderInfoProps) {
   const { location, } = useLocation();
   const [cidade, setCidade] = useState("Triunfo-PE");
   const [temperatura, setTemperatura] = useState("00℃");
+  const [weatherIcon, setWeatherIcon] = useState('cdn.weatherapi.com/weather/64x64/day/116.png');
 
   // LIFECYCLE
 
@@ -25,6 +26,7 @@ export function HeaderInfo(props: HeaderInfoProps) {
     //TODO: Adaptação do icone do tempo
     console.log(`Condição do tempo: ${response.data.current.condition.text}`);
     setTemperatura(`${response.data.current.temp_c}℃`)
+    setWeatherIcon(response.data.current.condition.icon);
   })
 
   // METHODS
@@ -58,7 +60,7 @@ export function HeaderInfo(props: HeaderInfoProps) {
       </View>
 
       <View style={styles.row}>
-        <Feather name={"sun"} size={32} color={THEME.COLORS.DARKGRAY} />
+        <Image source={{uri:`https://${weatherIcon}`}} style={{width:32, height:32}}/>
         <Text style={styles.info}>{temperatura}</Text>
       </View>
     </View>

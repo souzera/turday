@@ -2,10 +2,14 @@ import { Camera, Marker, Region } from "react-native-maps";
 import MapView from "react-native-maps";
 import styles from "./styles";
 import { MapComponentProps } from "./interface";
+import { useEffect, useState } from "react";
+import { getAddress } from "../../services/google/maps";
 
 export function MapComponent({ pointer }: MapComponentProps) {
-  // VARIABLES
+  
 
+  console.log("Map Componente received pointer: ", pointer);
+  // VARIABLES
   const initialCamera: Camera = {
     center: {
       latitude: pointer.latitude,
@@ -22,9 +26,6 @@ export function MapComponent({ pointer }: MapComponentProps) {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
-  // STATES
-
-  // LIFECYCLE
 
   // METHODS
 
@@ -33,6 +34,8 @@ export function MapComponent({ pointer }: MapComponentProps) {
       style={styles.box}
       initialRegion={initialRegion}
       initialCamera={initialCamera}
+      scrollEnabled={false}
+      zoomEnabled
     >
       <Marker
         coordinate={{
