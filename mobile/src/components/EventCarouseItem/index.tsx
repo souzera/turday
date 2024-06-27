@@ -11,8 +11,6 @@ export default function EventCarouselItem({
   item,
   style,
 }: EventCarouseItemProps) {
-  console.log(item.imagens[0].url);
-  console.log(style);
 
   const [modalVisible, setModalVisible] = useState(false);
 

@@ -1,3 +1,3 @@
 export default function verifyTextIsLink(text: string): boolean {
-    return text.includes("http") || text.includes(".com") ;
+    return text.includes("http") || text.includes('.com');
 }

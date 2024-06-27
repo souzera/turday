@@ -4,11 +4,17 @@ import styles from "./styles";
 import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "../../theme";
 import verifyTextIsLink from "../../util/verifyTextIsLink";
+import verifyTextIsEmail from "../../util/verifyTextIsEmail";
 
 export function DetailsInfoComponents(props: DetailsInfoComponentsProps) {
-  console.log("DetailsInfoComponents", props);
 
   const openLink =  async () => {
+
+    if (verifyTextIsEmail(props.description)) {
+      await Linking.openURL(`mailto:${props.description}`);
+      return;
+    }
+
     await Linking.openURL(props.description);
   };
 

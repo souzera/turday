@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { getWeather } from "../../services/weather";
 import useLocation from "../../context/location";
 import { HeaderInfoProps } from "./interface";
+import { getAddress } from "../../services/google/maps";
+import { getPlace } from "../../services/adress";
 
 export function HeaderInfo(props: HeaderInfoProps) {
 
@@ -23,10 +25,19 @@ export function HeaderInfo(props: HeaderInfoProps) {
 
   // Coletando a temperatura da cidade atual do dispositivo
   getWeather(location.latitude, location.longitude).then((response) => {
-    //TODO: Adaptação do icone do tempo
-    console.log(`Condição do tempo: ${response.data.current.condition.text}`);
+
+    /**
+     * consulta a condição do tempo na cidade atual do usuário
+     * 
+     * {response.data.current.condition.text}
+     */
+    console.log(location.latitude, location.longitude);
     setTemperatura(`${response.data.current.temp_c}℃`)
     setWeatherIcon(response.data.current.condition.icon);
+  })
+
+  getPlace({latitude: location.latitude, longitude: location.longitude}).then((response) => {
+    setCidade(response.data.address.city);
   })
 
   // METHODS
@@ -53,7 +64,7 @@ export function HeaderInfo(props: HeaderInfoProps) {
           <TouchableOpacity
             onPress={onpress}
           >
-            <Text style={styles.link}>alterar</Text>
+            <Text style={styles.link}>Onde estou</Text>
           </TouchableOpacity>
           <Text style={styles.info}>{cidade}</Text>
         </View>

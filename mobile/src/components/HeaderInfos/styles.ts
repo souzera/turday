@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     link:{
         fontSize: THEME.FONT_SIZE.XS,
-        color: THEME.COLORS.BLUE,
+        color: THEME.COLORS.LIGTHGRAY,
     }
 });
 

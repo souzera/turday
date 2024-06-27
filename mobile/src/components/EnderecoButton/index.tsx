@@ -21,7 +21,6 @@ export default function EnderecoButton(props: EnderecoButtonProps) {
       if (!endereco || endereco === "N/A") {
         getAddress({ latitude: props.latitude, longitude: props.longitude }).then(
           ({data}:any) =>{
-            console.log(data);
             setEndereco(data.results[0].formatted_address);
           }
         );

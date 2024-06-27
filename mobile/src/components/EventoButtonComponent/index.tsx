@@ -28,9 +28,10 @@ export default function EventoButtonComponent(props: EventoButtonProps) {
   };
 
   const handlePress = () => {
-    console.log(
-      `Abrir modal com informações do evento\n\tNome: ${props.nome}\n\tId: ${props.id}`
-    );
+
+    /**
+     * abrir um modal com todas as informações do evento
+     */
 
     setIsOpen(true);
   };
