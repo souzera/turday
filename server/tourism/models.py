@@ -89,6 +89,8 @@ class Servico(models.Model):
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     descricao = models.TextField(null=True, blank=True)
     endereco = models.CharField(max_length=512, null=True, blank=True)
+    latitude = models.FloatField(null=False, blank=False, default=0.0)
+    longitude = models.FloatField(null=False, blank=False, default=0.0)
     contato = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     infos = models.ManyToManyField(Info, blank=True, related_name='servicos')
