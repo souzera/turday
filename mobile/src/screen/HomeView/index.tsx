@@ -32,6 +32,9 @@ export default function HomeView() {
       setLocation(coords);
     });
 
+
+    // TODO: Implementar o filtro para exibir apenas os pontos turisticos, serviços e eventos da cidade atual do usuario
+
     //reset list
     setList([]);
 
