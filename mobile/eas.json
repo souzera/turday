@@ -5,6 +5,10 @@
   },
   "build": {
     "preview": {
+      "env":{
+        "EXPO_PUBLIC_WEATHER_API_KEY":"b1d1e974dcba48bf803164023240605",
+        "EXPO_PUBLIC_GEOCODING_API_KEY":"AIzaSyCne-xcQ2pQAtVkelvhzRRJ4u7sDfMg33M"
+      },
       "android": {
         "buildType": "apk"
       }
