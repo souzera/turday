@@ -52,14 +52,14 @@ export default function DetailsView(props: DetailsViewProps) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        {entity.imagens && (
+        {entity.imagens[0] ? 
           <Image
             source={{
               uri: validateUrlImage(entity.imagens[0].url),
             }}
             style={styles.imageDetailsView}
           />
-        )}
+         : null}
 
         {entity.endereco && <EnderecoButton endereco={entity.endereco} latitude={entity.latitude} longitude={entity.longitude}/>}
 
