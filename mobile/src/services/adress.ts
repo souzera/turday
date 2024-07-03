@@ -8,5 +8,5 @@ export async function getPlace(pointer: Pointer){
             lon: pointer.longitude,
             format: "json"
         }
-    }).catch((error) => {return error});
+    }).then(response => {return response}).catch((error) => {return error});
 }

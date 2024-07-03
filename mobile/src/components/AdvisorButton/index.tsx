@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
@@ -20,10 +20,21 @@ export default function AdvisorButton(props: AdvisorButtonProps) {
 
   props.avatar && console.log(validateAvatar(props.avatar));
 
-  const handleChat = () => {
+  const handleChat = async () => {
+    /**
+     * @param {string} contato deve seu um numero valido
+     * @example +5581999999999
+     */
+
     console.log(
       `Chat to advisor ${props.nome}: Send message to ${props.contato}`
     );
+    try {
+      await Linking.openURL("https://wa.me/" + props.contato);
+      return;
+    } catch (e) {
+      return console.log("Error to open chat", e);
+    }
   };
 
   return (

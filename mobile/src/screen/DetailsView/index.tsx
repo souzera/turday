@@ -17,6 +17,7 @@ export default function DetailsView(props: DetailsViewProps) {
   // STATES
 
   const [entity, setEntity] = useState<any>({});
+  const [imagens, setImagens] = useState<any>([]);
 
   // LIFECYCLE
 
@@ -25,50 +26,84 @@ export default function DetailsView(props: DetailsViewProps) {
 
     switch (props.type) {
       case "pontoTuristico":
-        const findPontoTuristico = async () => await getPontoTuristico(props.id_entity).then(({ data }: any) => {
-          setEntity(data);
-        });
+        const findPontoTuristico = async () =>
+          await getPontoTuristico(props.id_entity).then(({ data }: any) => {
+            setEntity(data);
+            setImagens([...data.imagens]);
+          });
 
-        findPontoTuristico()
+        findPontoTuristico();
         break;
-      case 'servico':
-        const findServico = async() => await getServico(props.id_entity).then(({ data }: any) => {
-          setEntity(data);
-        });
+      case "servico":
+        const findServico = async () =>
+          await getServico(props.id_entity).then(({ data }: any) => {
+            setEntity(data);
+            setImagens([...data.imagens]);
+          });
 
         findServico();
         break;
-      case 'evento':
-        const findEvento = async() => await getEvento(props.id_entity).then(({ data }: any) => {
-          setEntity(data);
-        })
-
+      case "evento":
+        const findEvento = async () =>
+          await getEvento(props.id_entity).then(({ data }: any) => {
+            setEntity(data);
+            setImagens([...data.imagens]);
+          });
         findEvento();
+        break;
     }
-  }, []);
 
+  }, []);
+  
   // METHODS
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        {entity.imagens[0] ? 
+
+        {imagens.length > 0 && (
           <Image
             source={{
               uri: validateUrlImage(entity.imagens[0].url),
             }}
             style={styles.imageDetailsView}
           />
-         : null}
+        )}
 
-        {entity.endereco && <EnderecoButton endereco={entity.endereco} latitude={entity.latitude} longitude={entity.longitude}/>}
 
-        {props.type === 'evento' &&
-          <View style={{display:"flex", flexDirection:"row", justifyContent:"space-between", gap:40}}>
-            {entity.abertura && <DetailsInfoComponents title={"Abertura"} description={formatterDateStringDDMM(entity.abertura)} icon={"calendar-plus-o"}/>}
-            {entity.abertura && <DetailsInfoComponents title={"Encerramento"} description={formatterDateStringDDMM(entity.encerramento)} icon={"calendar-check-o"} />}
+        {entity.endereco && (
+          <EnderecoButton
+            endereco={entity.endereco}
+            latitude={entity.latitude}
+            longitude={entity.longitude}
+          />
+        )}
+
+        {props.type === "evento" && (
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              gap: 40,
+            }}
+          >
+            {entity.abertura && (
+              <DetailsInfoComponents
+                title={"Abertura"}
+                description={formatterDateStringDDMM(entity.abertura)}
+                icon={"calendar-plus-o"}
+              />
+            )}
+            {entity.abertura && (
+              <DetailsInfoComponents
+                title={"Encerramento"}
+                description={formatterDateStringDDMM(entity.encerramento)}
+                icon={"calendar-check-o"}
+              />
+            )}
           </View>
-        }
+        )}
 
         <View style={styles.collumnDetailsView}>
           {entity.descricao && (
@@ -87,7 +122,7 @@ export default function DetailsView(props: DetailsViewProps) {
               );
             })}
         </View>
-      <View style={{height:100, width:"100%"}}/>
+        <View style={{ height: 100, width: "100%" }} />
       </View>
     </ScrollView>
   );

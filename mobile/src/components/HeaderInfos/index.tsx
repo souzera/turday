@@ -1,12 +1,11 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
-import { FontAwesome, Feather } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "../../theme";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getWeather } from "../../services/weather";
 import useLocation from "../../context/location";
 import { HeaderInfoProps } from "./interface";
-import { getAddress } from "../../services/google/maps";
 import { getPlace } from "../../services/adress";
 
 export function HeaderInfo(props: HeaderInfoProps) {
@@ -31,13 +30,13 @@ export function HeaderInfo(props: HeaderInfoProps) {
      * 
      * {response.data.current.condition.text}
      */
-    console.log(location.latitude, location.longitude);
     setTemperatura(`${response.data.current.temp_c}℃`)
     setWeatherIcon(response.data.current.condition.icon);
   })
 
-  getPlace({latitude: location.latitude, longitude: location.longitude}).then((response) => {
-    setCidade(response.data.address.city);
+  getPlace({latitude: location.latitude, longitude: location.longitude}).then(({data}:any) => {
+    const cidade = data.address.city ? data.address.city : data.address.town;
+    setCidade(cidade);
   })
 
   // METHODS
