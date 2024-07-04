@@ -22,7 +22,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.turday.turday"
+      "package": "com.turday.turday",
+      "config":{
+        "googleMaps":{
+          "apiKey": "AIzaSyCne-xcQ2pQAtVkelvhzRRJ4u7sDfMg33M"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

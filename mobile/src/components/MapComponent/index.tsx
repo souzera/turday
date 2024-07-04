@@ -1,9 +1,8 @@
 import { Camera, Marker, Region } from "react-native-maps";
 import MapView from "react-native-maps";
+import { PROVIDER_GOOGLE } from "react-native-maps";
 import styles from "./styles";
 import { MapComponentProps } from "./interface";
-import { useEffect, useState } from "react";
-import { getAddress } from "../../services/google/maps";
 
 export function MapComponent({ pointer }: MapComponentProps) {
   
@@ -31,6 +30,7 @@ export function MapComponent({ pointer }: MapComponentProps) {
 
   return (
     <MapView
+      provider={PROVIDER_GOOGLE}
       style={styles.box}
       initialRegion={initialRegion}
       initialCamera={initialCamera}
