@@ -32,24 +32,26 @@ export default function ServiceListComponent({ category }: ListComponentProps) {
 
   return (
     <View style={{ display: "flex" }}>
-      {category && <Text>{category}</Text>}
       <FlatList
         numColumns={2}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         scrollToOverflowEnabled={true}
         showsVerticalScrollIndicator={false}
         data={servicos}
-        renderItem={({ item }) => (
-          <ListItem
-            id={item.id}
-            icon="map-marker"
-            titulo={item.nome}
-            image={validateUrlImage(item.imagens[0].url)}
-            link={""}
-            descricao={item.endereco}
-            type='servico'
-          />
-        )}
+        renderItem={({ item }) => {
+          return (
+            <ListItem
+              id={item.id}
+              icon="map-marker"
+              titulo={item.nome}
+              image={validateUrlImage(item.imagens[0].url)}
+              link={""}
+              descricao={item.endereco}
+              type="servico"
+              pointer={{ latitude: item.latitude, longitude: item.longitude}}
+            />
+          );
+        }}
         keyExtractor={(item) => item.id}
       />
     </View>

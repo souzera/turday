@@ -1,15 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, Modal } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { ListItemProps } from "./interface";
 import styles from "./styles";
 import DetailsView from "../../screen/DetailsView";
 import { THEME } from "../../theme";
+import { getAddress } from "../../services/google/maps";
 
 export function ListItem(props: ListItemProps) {
   // STATES
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [endereco, setEndereco] = useState(props.descricao);
+
+  // LIFECYCLE
+
+  useEffect(() => {
+    if (props.descricao == "N/A" && props.type == "servico") {
+      console.log("Endereco: ", props.descricao);
+      console.log("Pointer: ", props.pointer);
+
+      if (props.pointer){
+        getAddress(props.pointer).then(({ data }: any) => {
+          setEndereco(data.results[0].formatted_address);
+        })
+      }
+    }
+  },[])
 
   // METHODS
 
@@ -36,7 +53,7 @@ export function ListItem(props: ListItemProps) {
             <FontAwesome name="map-marker" size={16} color={"gray"} />
           ) : null}
           <Text numberOfLines={2} style={styles.desc}>
-            {props.descricao}
+            {props.type!="servico" ? props.descricao : endereco}
           </Text>
         </View>
       </View>

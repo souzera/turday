@@ -59,7 +59,7 @@ export default function EventoButtonComponent(props: EventoButtonProps) {
         ) : null}
         <View style={{ display: "flex", width: "100%" }}>
           <View style={{ width: 120 }}>
-            <Text style={styles.eventoButtonTitle} numberOfLines={2}>
+            <Text style={styles.eventoButtonTitle} numberOfLines={1}>
               {props.nome}
             </Text>
           </View>
@@ -91,8 +91,8 @@ export default function EventoButtonComponent(props: EventoButtonProps) {
                 color={THEME.COLORS.DARKGRAY}
               />
             </TouchableOpacity>
-            <View>
-              <Text style={styles.modalHeaderTitle}>{props.nome}</Text>
+            <View style={{width:"80%", display:'flex',justifyContent:"center", alignItems:'center'}}>
+              <Text numberOfLines={1} style={styles.modalHeaderTitle}>{props.nome}</Text>
             </View>
             <View style={{ width: 1 }}></View>
           </View>

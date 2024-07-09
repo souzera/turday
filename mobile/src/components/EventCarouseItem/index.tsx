@@ -50,8 +50,8 @@ export default function EventCarouselItem({
               />
             </TouchableOpacity>
 
-            <View>
-              <Text style={styles.modalHeaderTitle}>
+            <View style={{width:"80%", display:'flex',justifyContent:"center", alignItems:'center'}}>
+              <Text numberOfLines={1} style={styles.modalHeaderTitle}>
                 {item.nome}
               </Text>
             </View>

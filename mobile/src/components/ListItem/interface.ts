@@ -1,4 +1,5 @@
 import { TouchableOpacityProps } from "react-native";
+import { Pointer } from "../MapComponent/interface";
 
 export interface ListItemProps extends TouchableOpacityProps{
     id: string;
@@ -8,4 +9,5 @@ export interface ListItemProps extends TouchableOpacityProps{
     link: string;
     icon?: string | undefined;
     type: string;
+    pointer?: Pointer;
 }

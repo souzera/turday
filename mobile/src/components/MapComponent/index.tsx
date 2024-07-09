@@ -34,7 +34,6 @@ export function MapComponent({ pointer }: MapComponentProps) {
       style={styles.box}
       initialRegion={initialRegion}
       initialCamera={initialCamera}
-      scrollEnabled={false}
       zoomEnabled
     >
       <Marker
