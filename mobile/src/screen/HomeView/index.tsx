@@ -15,14 +15,13 @@ import { getServicos } from "../../services/api/servicos/requests";
 import { HomeListItemProps } from "./interface";
 import { Evento } from "../../services/api/evento/type";
 import { getEventos } from "../../services/api/evento/requests";
-import auth from '@react-native-firebase/auth';
+
 
 export default function HomeView() {
   // STATES
 
   const { location, setLocation } = useLocation();
 
-  const [user, setUser] = useState<any>();
 
   //TODO: implementar um tipo para essa lista na home view
   const [list, setList] = useState<HomeListItemProps[]>([]); // [PontoTuristico]
@@ -42,9 +41,7 @@ export default function HomeView() {
     setList([]);
 
     //get user
-    const subscriber = auth().onAuthStateChanged(setUser);
-    console.log("user", user);
-
+    
     getPontosTuristicos().then(({ data }: any) => {
       data = data.slice(0, 4);
       data.map((item: any) => {
