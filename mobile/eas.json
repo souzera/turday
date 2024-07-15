@@ -4,6 +4,10 @@
     "requireCommit": true
   },
   "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
     "preview": {
       "env":{
         "EXPO_PUBLIC_WEATHER_API_KEY":"b1d1e974dcba48bf803164023240605",

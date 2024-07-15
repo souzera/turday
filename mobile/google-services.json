@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "164852426125",
+    "project_id": "turday-auth",
+    "storage_bucket": "turday-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164852426125:android:224ce2e180b5c89a4109c4",
+        "android_client_info": {
+          "package_name": "com.turday.turday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164852426125-nio47n6hilbb265b3q5peedcmu2bb4qc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6mP7DffOdMBkdfWljYGBc2tNKARwmJRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164852426125-nio47n6hilbb265b3q5peedcmu2bb4qc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
