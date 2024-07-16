@@ -1,6 +1,18 @@
 from django.contrib import admin
 from .models import *
 
+@admin.register(Turista)
+class TuristaAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Comentario)
+class ComentarioAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    pass
+
 @admin.register(Imagem)
 class ImagemAdmin(admin.ModelAdmin):
     pass

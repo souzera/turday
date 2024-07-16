@@ -1,6 +1,22 @@
 from rest_framework import serializers
 from .models import *
 
+# TODO: criptografar senha
+class TuristaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Turista
+        fields = ('id', 'nome', 'email', 'senha', 'avatar')
+
+class ComentarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = ('id', 'turista', 'texto', 'data')
+
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = ('id', 'turista', 'status')
+
 class ImagemSerializer(serializers.ModelSerializer):
     
     url = serializers.SerializerMethodField()

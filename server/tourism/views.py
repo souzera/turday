@@ -35,6 +35,18 @@ class MediaView(View):
             print(f'Error: {path}')
             return HttpResponseRedirect(path)
 
+class TuristaViewSet(viewsets.ModelViewSet):
+    serializer_class = TuristaSerializer
+    queryset = Turista.objects.all()
+
+class ComentarioViewSet(viewsets.ModelViewSet):
+    serializer_class = ComentarioSerializer
+    queryset = Comentario.objects.all()
+
+class LikeViewSet(viewsets.ModelViewSet):
+    serializer_class = LikeSerializer
+    queryset = Like.objects.all()
+
 class CidadeViewSet(viewsets.ModelViewSet):
     serializer_class = CidadeSerializer
     queryset = Cidade.objects.all()

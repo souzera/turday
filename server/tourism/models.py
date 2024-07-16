@@ -4,16 +4,6 @@ from core.utils import RenomearComUUID
 
 # Create your models here.
 
-class Usuario(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    nome = models.CharField(max_length=100)
-    login = models.CharField(max_length=100, unique=True)
-    email = models.EmailField(max_length=100)
-    senha = models.CharField(max_length=100)
-    avatar = models.ImageField(upload_to=RenomearComUUID(''), null=True, blank=True)
-
-    def __str__(self):
-        return self.nome
 
 # TODO: (Ver depois) https://studygyaan.com/django/how-to-secure-media-files-in-django#google_vignette
 class Imagem(models.Model):
@@ -27,6 +17,17 @@ class Imagem(models.Model):
     def __str__(self):
         return self.legenda
 
+class Turista(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    nome = models.CharField(max_length=100)
+    login = models.CharField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100)
+    senha = models.CharField(max_length=100)
+    avatar = models.ImageField(upload_to=RenomearComUUID(''), null=True, blank=True)
+
+    def __str__(self):
+        return self.nome
+
 class Info(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     title = models.CharField(max_length=100, null=True, blank=True)
@@ -37,20 +38,20 @@ class Info(models.Model):
 
 class Like(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    turista = models.ForeignKey(Turista, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.usuario.nome
+        return self.turista.nome + ": " + str(self.status)
 
 class Comentario(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    turista = models.ForeignKey(Turista, on_delete=models.CASCADE)
     texto = models.TextField()
     data = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.usuario.nome + ": " + self.texto
+        return self.turista.nome + ": " + self.texto
 
 class Categoria(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
