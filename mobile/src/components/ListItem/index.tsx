@@ -6,6 +6,7 @@ import styles from "./styles";
 import DetailsView from "../../screen/DetailsView";
 import { THEME } from "../../theme";
 import { getAddress } from "../../services/google/maps";
+import LikeButton from "../LikeButton";
 
 export function ListItem(props: ListItemProps) {
   // STATES
@@ -20,13 +21,13 @@ export function ListItem(props: ListItemProps) {
       console.log("Endereco: ", props.descricao);
       console.log("Pointer: ", props.pointer);
 
-      if (props.pointer){
+      if (props.pointer) {
         getAddress(props.pointer).then(({ data }: any) => {
           setEndereco(data.results[0].formatted_address);
-        })
+        });
       }
     }
-  },[])
+  }, []);
 
   // METHODS
 
@@ -47,14 +48,19 @@ export function ListItem(props: ListItemProps) {
           <Image source={{ uri: props.image }} style={styles.image} />
         </View>
         <Text style={styles.titulo}>{props.titulo}</Text>
-        <View style={styles.descContainer}>
-          {props.icon ? (
-            //TODO: corrigir erro parar receber o icone
-            <FontAwesome name="map-marker" size={16} color={"gray"} />
-          ) : null}
-          <Text numberOfLines={2} style={styles.desc}>
-            {props.type!="servico" ? props.descricao : endereco}
-          </Text>
+        <View
+          style={{ ...styles.descContainer, justifyContent: "space-between" }}
+        >
+          <View style={{display:'flex', flexDirection:'row', gap:5}}>
+            {props.icon ? (
+              //TODO: corrigir erro parar receber o icone
+              <FontAwesome name="map-marker" size={16} color={"gray"} />
+            ) : null}
+            <Text numberOfLines={2} style={styles.desc}>
+              {props.type != "servico" ? props.descricao : endereco}
+            </Text>
+          </View>
+          <LikeButton type={props.type} entity={props.id} size={16} />
         </View>
       </View>
 
@@ -68,7 +74,7 @@ export function ListItem(props: ListItemProps) {
                 color={THEME.COLORS.DARKGRAY}
               />
             </TouchableOpacity>
-            <View style={{ width: 280, display:'flex', alignItems:"center"}}>
+            <View style={{ width: 280, display: "flex", alignItems: "center" }}>
               <Text style={{ ...styles.modalHeaderTitle }} numberOfLines={1}>
                 {props.titulo}
               </Text>
