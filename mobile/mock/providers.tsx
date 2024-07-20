@@ -1,13 +1,16 @@
 import { LocationContextProvider } from "../src/context/location";
+import { AuthContextProvider } from "../src/context/auth";
 
 export default function MockProviders({ children }: any) {
+  // STATES
 
-    // STATES
+  // LIFECYCLE
 
-    // LIFECYCLE
+  // METHODS
 
-    // METHODS
-
-
-  return <LocationContextProvider>{children}</LocationContextProvider>;
+  return (
+    <LocationContextProvider>
+      <AuthContextProvider>{children}</AuthContextProvider>
+    </LocationContextProvider>
+  );
 }
