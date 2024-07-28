@@ -19,14 +19,13 @@ class Imagem(models.Model):
 
 class Turista(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    nome = models.CharField(max_length=100)
     login = models.CharField(max_length=100, unique=True)
-    email = models.EmailField(max_length=100)
-    senha = models.CharField(max_length=100)
-    avatar = models.ImageField(upload_to=RenomearComUUID(''), null=True, blank=True)
+    email = models.EmailField(max_length=100, unique=True)
+    token = models.CharField(max_length=100, unique=True)
+    avatar = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.nome
+        return self.login
 
 class Info(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
@@ -42,7 +41,7 @@ class Like(models.Model):
     status = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.turista.nome + ": " + str(self.status)
+        return self.turista.login + ": " + str(self.status)
 
 class Comentario(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
@@ -51,7 +50,7 @@ class Comentario(models.Model):
     data = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.turista.nome + ": " + self.texto
+        return self.turista.login + ": " + self.texto
 
 class Categoria(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)

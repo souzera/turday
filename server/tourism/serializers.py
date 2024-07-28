@@ -1,21 +1,26 @@
 from rest_framework import serializers
 from .models import *
 
-# TODO: criptografar senha
 class TuristaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Turista
-        fields = ('id', 'nome', 'email', 'senha', 'avatar')
+        fields = ('id', 'login', 'email', 'token', 'avatar')
 
 class ComentarioSerializer(serializers.ModelSerializer):
+    
+    turista_id = serializers.PrimaryKeyRelatedField(queryset=Turista.objects.all(), source='turista')
+
     class Meta:
         model = Comentario
-        fields = ('id', 'turista', 'texto', 'data')
+        fields = ('id', 'turista_id', 'texto', 'data')
 
 class LikeSerializer(serializers.ModelSerializer):
+
+    turista_id = serializers.PrimaryKeyRelatedField(queryset=Turista.objects.all(), source='turista')
+    
     class Meta:
         model = Like
-        fields = ('id', 'turista', 'status')
+        fields = ('id', 'turista_id', 'status')
 
 class ImagemSerializer(serializers.ModelSerializer):
     
@@ -51,28 +56,33 @@ class PontoTuristicoSerializer(serializers.ModelSerializer):
     imagens = ImagemSerializer(many=True, read_only=True)
     infos = InfoSerializer(many=True, read_only=True)
     cidade = CidadeSerializer(read_only=True)
+    likes = LikeSerializer(many=True)
+    comentarios = ComentarioSerializer(many=True)
     
     class Meta:
         model = PontoTuristico
-        fields = ('id', 'nome', 'cidade', 'descricao', 'endereco', 'latitude', 'longitude', 'infos', 'imagens')
+        fields = ('id', 'nome', 'cidade', 'descricao', 'endereco', 'latitude', 'longitude', 'infos', 'imagens', "likes", "comentarios")
 
 class EventoSerializer(serializers.ModelSerializer):
     cidade = CidadeSerializer(read_only=True)
     infos = InfoSerializer(many=True, read_only=True)
     imagens = ImagemSerializer(many=True, read_only=True)
+    likes = LikeSerializer(many=True)
+    comentarios = ComentarioSerializer(many=True)
     
     class Meta:
         model = Evento
-        fields = ('id', 'nome', 'cidade', 'descricao', 'abertura', 'encerramento', 'infos', 'imagens')
+        fields = ('id', 'nome', 'cidade', 'descricao', 'abertura', 'encerramento', 'infos', 'imagens', "likes", "comentarios")
 
 class GuiaSerializer(serializers.ModelSerializer):
 
     avatar = ImagemSerializer(read_only=True)
     cidade = CidadeSerializer(read_only=True)
+    likes = LikeSerializer(many=True)
 
     class Meta:
         model = Guia
-        fields = ('id', 'nome', 'cidade', 'contato', 'rating', 'avatar')
+        fields = ('id', 'nome', 'cidade', 'contato', 'rating', 'avatar', "likes")
 
 class ServicoSerializer(serializers.ModelSerializer):
 
@@ -80,7 +90,9 @@ class ServicoSerializer(serializers.ModelSerializer):
     categoria = CategoriaSerializer(read_only=True)
     infos = InfoSerializer(many=True, read_only=True)
     imagens = ImagemSerializer(many=True, read_only=True)
+    likes = LikeSerializer(many=True)
+    comentarios = ComentarioSerializer(many=True)
 
     class Meta:
         model = Servico
-        fields = ('id', 'nome', 'descricao', 'cidade', 'endereco', 'latitude', 'longitude', 'contato', 'categoria', 'infos', 'imagens')
+        fields = ('id', 'nome', 'descricao', 'cidade', 'endereco', 'latitude', 'longitude', 'contato', 'categoria', 'infos', 'imagens', 'likes', 'comentarios')
