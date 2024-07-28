@@ -10,7 +10,9 @@ export default function MockProviders({ children }: any) {
 
   return (
     <LocationContextProvider>
-      <AuthContextProvider>{children}</AuthContextProvider>
+      <AuthContextProvider>
+          {children}
+      </AuthContextProvider>
     </LocationContextProvider>
   );
 }

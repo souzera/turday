@@ -10,8 +10,6 @@ export const rootStyles = StyleSheet.create({
     height: "100%",
     width: "100%",
     gap: 20,
-    //TODO: REMOVER O BACKGROUND COLOR
-    //backgroundColor: THEME.COLORS.INFO,
   },
   row: {
     display: "flex",
@@ -42,18 +40,19 @@ export const rootStyles = StyleSheet.create({
   //TODO: corrigir borda superior do modal
   modalHeader: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
     flexDirection: "row",
-    width: "90%",
+    width: "100%",
     height: 50,
     marginTop: 20,
-    gap: 20,
     padding: 0,
   },
   modalHeaderTitle: {
+    textAlign: "center",
     fontSize: THEME.FONT_SIZE.LG,
     color: THEME.COLORS.DARKGRAY,
+    width: "80%"
   },
   inputGroup: {
     display: "flex",

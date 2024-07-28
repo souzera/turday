@@ -10,6 +10,10 @@ import EnderecoButton from "../../components/EnderecoButton";
 import { validateUrlImage } from "../../util/validateUrlImage";
 import { getEvento } from "../../services/api/evento/requests";
 import { formatterDateStringDDMM } from "../../util/dateConverter";
+import { ComentarioViewComponent } from "../../components/ComentarioViewComponent";
+import { Comentario, ComentarioDTO } from "../../services/api/comentarios/type";
+import { ComentarioInputComponent } from "../../components/ComentarioInputComponent";
+import { THEME } from "../../theme";
 
 // TODO: implementar a tela de detalhes
 
@@ -52,15 +56,13 @@ export default function DetailsView(props: DetailsViewProps) {
         findEvento();
         break;
     }
-
   }, []);
-  
+
   // METHODS
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-
         {imagens.length > 0 && (
           <Image
             source={{
@@ -69,7 +71,6 @@ export default function DetailsView(props: DetailsViewProps) {
             style={styles.imageDetailsView}
           />
         )}
-
 
         {entity.endereco && (
           <EnderecoButton
@@ -122,6 +123,33 @@ export default function DetailsView(props: DetailsViewProps) {
               );
             })}
         </View>
+
+        <Text
+          style={{ color: THEME.COLORS.DARKGRAY, fontSize: THEME.FONT_SIZE.MD}}
+        >
+          Avaliações
+        </Text>
+
+        <View style={{ width: "100%", gap:10 }}>
+          {/** SEssão de Comentarios */}
+
+          {entity.comentarios && entity.comentarios.length === 0 && (
+            <Text style={{ color: "gray", textAlign: "center", marginTop: 20 }}>
+              Seja o primeiro a comentar
+            </Text>
+          )}
+
+          {entity.comentarios &&
+            entity.comentarios.map((comentario: ComentarioDTO) => {
+              console.log("comentario", comentario);
+              return <ComentarioViewComponent comentario={comentario} />;
+            })}
+        </View>
+
+        <View style={{ width: "100%" }}>
+          <ComentarioInputComponent type={props.type} id_entity={props.id_entity} />
+        </View>
+
         <View style={{ height: 100, width: "100%" }} />
       </View>
     </ScrollView>

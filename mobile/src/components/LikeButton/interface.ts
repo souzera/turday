@@ -1,5 +1,5 @@
 export interface LikeButtonProps {
     type: string;
-    entity: any;
+    id_entity: string;
     size: number;
 }

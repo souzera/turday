@@ -1,61 +1,74 @@
-import { FontAwesome } from '@expo/vector-icons';
-import { Modal, TouchableOpacity, View, Text } from 'react-native';
-import { LikeButtonProps } from './interface';
-import { useEffect, useState } from 'react';
-import useAuth from '../../context/auth';
-import styles from './style';
+import { FontAwesome } from "@expo/vector-icons";
+import { Modal, TouchableOpacity, View, Text } from "react-native";
+import { LikeButtonProps } from "./interface";
+import { useEffect, useState } from "react";
+import useAuth from "../../context/auth";
+import styles from "./style";
+import { AuthComponent } from "../AuthComponent";
+import { THEME } from "../../theme";
+import { checkLike, toggleLike } from "../../services/api/like/requests";
 
-export default function LikeButton(props:LikeButtonProps) {
+export default function LikeButton(props: LikeButtonProps) {
+  // STATES
+  const { usuario } = useAuth();
+  const [isLiked, setIsLiked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-    // STATES
-    const {usuario} = useAuth();
-    const [isLiked, setIsLiked] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+  // LIFECYCLE
 
-    // LIFECYCLE
-
-    useEffect(()=>{
-
-        switch(props.type) {
-            case 'pontoturistico':
-                break;
-            case 'servico':
-                break;
-            case 'evento':
-                break;
-            case 'guia':
-                break
-        }
-
-    },[])
-
-    // METHODS
-
-    const handleLike = () => {
-        // TODO: LOGICA DO LOGIN NO BOTAO DO LIKE
-        // SE EXISTIR USUARIO LOGADO
-        if (usuario){
-            setIsLiked(!isLiked);
-        } else {setShowModal(true)}
-        // SE NÃO EXISTIR USUARIO LOGADO
-        // ABRIR MODAL DE LOGIN
+  useEffect(() => {
+    // verificando as curtidas do usuario atual
+    if (usuario){
+        checkLike(props.id_entity, props.type, usuario.id).then((response) => {
+            setIsLiked(response);
+        }).catch((error) => {
+            console.log("CHECK-LIKE Error: ", error)
+        });
     }
+  }, [usuario]);
 
-    return (
-        <View>
-            <TouchableOpacity onPress={handleLike}>
-                {isLiked ? <FontAwesome name="heart" size={props.size} color="red" /> : <FontAwesome name="heart-o" size={props.size} color="black" />}
-            </TouchableOpacity>
+  useEffect(() => {
+    if (usuario) {
+      setShowModal(false);
+    }
+  }, [usuario]);
 
-            <Modal visible={showModal}>
-                <View style={styles.modalContent}>
-                    <Text>Para curtir um item é necessário estar logado</Text>
-                    <TouchableOpacity onPress={()=>setShowModal(false)}>
-                        <Text>Fechar</Text>
-                    </TouchableOpacity>
-                </View>
-            </Modal>
+  // METHODS
 
+  const handleLike = () => {
+    if (usuario) {
+      toggleLike(props.id_entity, props.type, usuario.id).then(
+        () => {
+            setIsLiked(!isLiked);
+        }
+      );
+    } else {
+      setShowModal(true);
+    }
+  };
+
+  return (
+    <View>
+      <TouchableOpacity onPress={handleLike}>
+        {isLiked ? (
+          <FontAwesome name="heart" size={props.size} color="red" />
+        ) : (
+          <FontAwesome
+            name="heart-o"
+            size={props.size}
+            color={THEME.COLORS.DARKGRAY}
+          />
+        )}
+      </TouchableOpacity>
+
+      <Modal visible={showModal}>
+        <View style={styles.modalContent}>
+          <AuthComponent />
+          <TouchableOpacity onPress={() => setShowModal(false)}>
+            <Text>Fechar</Text>
+          </TouchableOpacity>
         </View>
-    )
+      </Modal>
+    </View>
+  );
 }

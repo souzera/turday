@@ -35,7 +35,7 @@ export function DetailsInfoComponents(props: DetailsInfoComponentsProps) {
         <Text style={styles.titleDetailsInfo}>{props.title}</Text>
         {verifyTextIsLink(props.description) ? 
         (
-          <Text onPress={openLink} style={{...styles.descriptionDetailsInfo, ...styles.linkStyle}}>{props.description}</Text>
+          <Text onPress={openLink} style={{...styles.descriptionDetailsInfo, ...styles.linkStyle}}>{props.description.replace("http://", "")}</Text>
         ) : 
         (
           <Text style={styles.descriptionDetailsInfo}>{props.description}</Text>

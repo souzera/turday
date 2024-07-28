@@ -15,9 +15,16 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 export function TabRoutes() {
 
+  const onTabPress = (e:any) => {
+    console.log("Tab Pressed", e.target);
+  }
+
   return (
     <NavigationContainer  independent={true}>
-      <Navigator initialRouteName="Home" screenOptions={
+      <Navigator
+      screenListeners={{tabPress: onTabPress}}
+      initialRouteName="Home" 
+      screenOptions={
         ({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName = "key";
@@ -45,6 +52,7 @@ export function TabRoutes() {
             backgroundColor: THEME.COLORS.LIGHT,
           }
         })
+      
       }>
         <Screen options={{headerShown:false}} name="Home" component={HomeView} />
         <Screen options={{headerShown:false}} name="Lista" component={ListView} />

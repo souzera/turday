@@ -17,9 +17,9 @@ export default function EventsCarousel({ events }: CarouselProps){
 
   return (
     <View style={styles.center}>
-      <PagerView style={styles.slide} onPageScroll={onScrollPage}>
+      <PagerView style={styles.slide} onPageScroll={onScrollPage} useNext={false}>
         {events.map((item) => (
-          <View style={{padding:10}}>
+          <View key={item.id} style={{padding:10}}>
             <EventCarouselItem item={item} style={{...styles.page}}/>
           </View>
         ))}

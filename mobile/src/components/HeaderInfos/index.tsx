@@ -35,8 +35,9 @@ export function HeaderInfo(props: HeaderInfoProps) {
   })
 
   getPlace({latitude: location.latitude, longitude: location.longitude}).then(({data}:any) => {
+    const estado = data.address.state ? data.address.state : data.address.county;
     const cidade = data.address.city ? data.address.city : data.address.town;
-    setCidade(cidade);
+    setCidade(`${cidade}, ${estado}`);
   })
 
   // METHODS

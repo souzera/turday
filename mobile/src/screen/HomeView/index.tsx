@@ -71,7 +71,7 @@ export default function HomeView() {
         setList((prev) => [...prev, newItem]);
       });
     });
-
+    
     getEventos().then(({ data }: any) => {
       data = data.slice(0, 3);
       setDestaques(data);
@@ -88,7 +88,7 @@ export default function HomeView() {
           <HeaderInfo />
         </View>
 
-        <View>
+        <View style={{width:"90%"}}>
           <View style={styles.collumn}>
             <View style={{...styles.row, justifyContent:"flex-start", alignItems:"flex-start", width:"80%"}}>
               <AntDesign
@@ -101,23 +101,24 @@ export default function HomeView() {
             <EventsCarousel events={detaques} />
           </View>
 
-          <View style={{ ...styles.container, marginTop: 10 }}>
+          <View style={{ ...styles.container, marginTop: 10, width:"100%" }}>
             <FlatList
-              style={{}}
               numColumns={2}
               ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
               scrollToOverflowEnabled={true}
               showsVerticalScrollIndicator={false}
               data={list}
               renderItem={({ item }) => (
-                <ListItem
-                  id={item.id}
-                  titulo={item.titulo}
-                  descricao={item.descricao}
-                  link={item.link}
-                  image={item.image}
-                  type={item.type}
-                />
+                <View style={{width:"50%"}}>
+                  <ListItem
+                    id={item.id}
+                    titulo={item.titulo}
+                    descricao={item.descricao}
+                    link={item.link}
+                    image={item.image}
+                    type={item.type}
+                  />
+                </View>
               )}
               keyExtractor={(item) => item.id}
             />

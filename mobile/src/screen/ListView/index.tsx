@@ -16,18 +16,6 @@ import { validateUrlImage } from "../../util/validateUrlImage";
 export default function ListView() {
   // STATES
 
-  //temporário
-  const listaCompleta: ListItemProps[] = [
-    {
-      id: "",
-      titulo: "Coreto da Praça da Guarani",
-      descricao: "Praça Carolino Campos",
-      image: "",
-      link: "",
-      type: "pontoTuristico",
-    },
-  ];
-
   const [list, setList] = useState<PontoTuristico[]>([]);
   const [search, setSearch] = useState<PontoTuristico[]>([]);
   const { location } = useLocation();
@@ -76,21 +64,24 @@ export default function ListView() {
       </View>
 
       <FlatList
+        style= {{width: "90%"}}
         numColumns={2}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         scrollToOverflowEnabled={true}
         showsVerticalScrollIndicator={false}
         data={search}
         renderItem={({ item }) => (
-          <ListItem
-            id={item.id}
-            icon="map-marker"
-            titulo={item.nome}
-            image={validateUrlImage(item.imagens[0].url)}
-            link={""}
-            descricao={item.endereco}
-            type="pontoTuristico"
-          />
+          <View style={{width:"50%"}}>
+            <ListItem
+              id={item.id}
+              icon="map-marker"
+              titulo={item.nome}
+              image={validateUrlImage(item.imagens[0].url)}
+              link={""}
+              descricao={item.endereco}
+              type="pontoTuristico"
+            />
+          </View>
         )}
         keyExtractor={(item) => item.id}
       />

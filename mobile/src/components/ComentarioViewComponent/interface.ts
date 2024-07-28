@@ -1,8 +1,5 @@
+import { Comentario, ComentarioDTO } from "../../services/api/comentarios/type";
+
 export interface ComentarioViewComponentProps {
-  comentario: {
-    id: string;
-    turista: string;
-    texto: string;
-    data: Date;
-  };
+  comentario: ComentarioDTO
 }

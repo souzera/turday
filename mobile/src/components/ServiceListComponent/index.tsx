@@ -40,16 +40,18 @@ export default function ServiceListComponent({ category }: ListComponentProps) {
         data={servicos}
         renderItem={({ item }) => {
           return (
-            <ListItem
-              id={item.id}
-              icon="map-marker"
-              titulo={item.nome}
-              image={validateUrlImage(item.imagens[0].url)}
-              link={""}
-              descricao={item.endereco}
-              type="servico"
-              pointer={{ latitude: item.latitude, longitude: item.longitude}}
-            />
+            <View style={{width:"50%"}}>
+              <ListItem
+                id={item.id}
+                icon="map-marker"
+                titulo={item.nome}
+                image={validateUrlImage(item.imagens[0].url)}
+                link={""}
+                descricao={item.endereco}
+                type="servico"
+                pointer={{ latitude: item.latitude, longitude: item.longitude}}
+              />
+            </View>
           );
         }}
         keyExtractor={(item) => item.id}

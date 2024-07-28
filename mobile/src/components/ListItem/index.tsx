@@ -33,7 +33,6 @@ export function ListItem(props: ListItemProps) {
 
   const handlePress = () => {
     console.log("Ir para a página de detalhes do item selecionado");
-    //TODO: redirecionar para a página de detalhes do item selecionado
     setModalVisible(true);
   };
 
@@ -47,11 +46,13 @@ export function ListItem(props: ListItemProps) {
         <View style={styles.imageContent}>
           <Image source={{ uri: props.image }} style={styles.image} />
         </View>
+
         <Text style={styles.titulo}>{props.titulo}</Text>
+        
         <View
-          style={{ ...styles.descContainer, justifyContent: "space-between" }}
+          style={{ ...styles.descContainer}}
         >
-          <View style={{display:'flex', flexDirection:'row', gap:5}}>
+          <View style={{ display: "flex", width:"80%", flexDirection: "row", gap: 5 }}>
             {props.icon ? (
               //TODO: corrigir erro parar receber o icone
               <FontAwesome name="map-marker" size={16} color={"gray"} />
@@ -60,7 +61,8 @@ export function ListItem(props: ListItemProps) {
               {props.type != "servico" ? props.descricao : endereco}
             </Text>
           </View>
-          <LikeButton type={props.type} entity={props.id} size={16} />
+          <View>
+          </View>
         </View>
       </View>
 
@@ -74,12 +76,12 @@ export function ListItem(props: ListItemProps) {
                 color={THEME.COLORS.DARKGRAY}
               />
             </TouchableOpacity>
-            <View style={{ width: 280, display: "flex", alignItems: "center" }}>
+            <View style={{ width: "80%", display: "flex", alignItems: "center" }}>
               <Text style={{ ...styles.modalHeaderTitle }} numberOfLines={1}>
                 {props.titulo}
               </Text>
             </View>
-            <View></View>
+              <LikeButton type={props.type} id_entity={props.id} size={24} />
           </View>
           <DetailsView id_entity={props.id} type={props.type} />
         </View>

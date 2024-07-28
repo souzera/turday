@@ -5,8 +5,11 @@ import { rootStyles } from '../../theme/styles';
 const styles = StyleSheet.create({
     ...rootStyles,
     listItemContainer:{
-        flex:1,
-        width: 180,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        width:"100%",
         padding: 10,
         gap: 5,
     },
@@ -21,13 +24,14 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     titulo:{
-        fontSize: 14,
+        fontSize: THEME.FONT_SIZE.MD,
         fontWeight: 'bold',
     },
     descContainer:{
         display: 'flex',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
         flexDirection: 'row',
-        width: '80%',
         gap: 5,
     },
     desc: {
