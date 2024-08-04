@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         backgroundColor: THEME.COLORS.LIGTHGRAY,
         color: THEME.COLORS.DARKGRAY,
         paddingHorizontal: 30,
+        paddingVertical: 20,
         borderRadius:20,
     },
     comentarioInputButton:{

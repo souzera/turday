@@ -2,9 +2,6 @@ import { StyleSheet } from "react-native";
 import { rootStyles } from "../../theme/styles";
 import { THEME } from "../../theme";
 
-
-//TODO: Testa generalização do estilo
-
 export const styles = StyleSheet.create({
     ...rootStyles,
     advisorViewContainer: {

@@ -11,11 +11,9 @@ import { validateUrlImage } from "../../util/validateUrlImage";
 import { getEvento } from "../../services/api/evento/requests";
 import { formatterDateStringDDMM } from "../../util/dateConverter";
 import { ComentarioViewComponent } from "../../components/ComentarioViewComponent";
-import { Comentario, ComentarioDTO } from "../../services/api/comentarios/type";
+import { ComentarioDTO } from "../../services/api/comentarios/type";
 import { ComentarioInputComponent } from "../../components/ComentarioInputComponent";
 import { THEME } from "../../theme";
-
-// TODO: implementar a tela de detalhes
 
 export default function DetailsView(props: DetailsViewProps) {
   // STATES
@@ -146,7 +144,7 @@ export default function DetailsView(props: DetailsViewProps) {
             })}
         </View>
 
-        <View style={{ width: "100%" }}>
+        <View style={{ flex:1, width: "100%", maxWidth:"100%" }}>
           <ComentarioInputComponent type={props.type} id_entity={props.id_entity} />
         </View>
 

@@ -8,6 +8,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import DetailsView from "../../screen/DetailsView";
 
 export default function EventoButtonComponent(props: EventoButtonProps) {
+  
   // TODO: Implementar a função onPress
   /** abrir um modal com todas as informações do evento
    * incluindo a imagem, nome, descrição, data de início e data de fim

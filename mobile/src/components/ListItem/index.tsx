@@ -54,7 +54,6 @@ export function ListItem(props: ListItemProps) {
         >
           <View style={{ display: "flex", width:"80%", flexDirection: "row", gap: 5 }}>
             {props.icon ? (
-              //TODO: corrigir erro parar receber o icone
               <FontAwesome name="map-marker" size={16} color={"gray"} />
             ) : null}
             <Text numberOfLines={2} style={styles.desc}>

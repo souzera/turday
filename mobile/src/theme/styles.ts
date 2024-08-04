@@ -37,7 +37,6 @@ export const rootStyles = StyleSheet.create({
     paddingHorizontal: 20,
     textAlign: "left",
   },
-  //TODO: corrigir borda superior do modal
   modalHeader: {
     display: "flex",
     justifyContent: "space-evenly",

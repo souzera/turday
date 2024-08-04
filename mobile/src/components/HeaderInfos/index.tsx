@@ -36,8 +36,9 @@ export function HeaderInfo(props: HeaderInfoProps) {
 
   getPlace({latitude: location.latitude, longitude: location.longitude}).then(({data}:any) => {
     const estado = data.address.state ? data.address.state : data.address.county;
+    const codigo_estado = data.address["ISO3166-2-lvl4"] ? data.address["ISO3166-2-lvl4"].split("-")[1] : `${estado[0]}${estado[1]}`.toUpperCase();
     const cidade = data.address.city ? data.address.city : data.address.town;
-    setCidade(`${cidade}, ${estado}`);
+    setCidade(`${cidade}, ${codigo_estado}`);
   })
 
   // METHODS

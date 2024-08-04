@@ -8,6 +8,16 @@ import verifyTextIsEmail from "../../util/verifyTextIsEmail";
 
 export function DetailsInfoComponents(props: DetailsInfoComponentsProps) {
 
+  const removePrefix = (link: string) => {
+    const prefixes  = ["http://", "https://"];
+    let selected = prefixes.find(prefix => link.includes(prefix));
+    let removePrefix = link;
+    if(selected){
+      removePrefix = link.replace(selected, '');
+    }
+    return removePrefix;
+  }
+
   const openLink =  async () => {
 
     if (verifyTextIsEmail(props.description)) {
@@ -35,7 +45,7 @@ export function DetailsInfoComponents(props: DetailsInfoComponentsProps) {
         <Text style={styles.titleDetailsInfo}>{props.title}</Text>
         {verifyTextIsLink(props.description) ? 
         (
-          <Text onPress={openLink} style={{...styles.descriptionDetailsInfo, ...styles.linkStyle}}>{props.description.replace("http://", "")}</Text>
+          <Text onPress={openLink} style={{...styles.descriptionDetailsInfo, ...styles.linkStyle}}>{removePrefix(props.description)}</Text>
         ) : 
         (
           <Text style={styles.descriptionDetailsInfo}>{props.description}</Text>

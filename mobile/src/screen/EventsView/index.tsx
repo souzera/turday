@@ -1,5 +1,3 @@
-//TODO: implements event view
-
 import { View, Text, FlatList, ScrollView, TextInput } from "react-native";
 import styles from "./styles";
 import { HeaderInfo } from "../../components/HeaderInfos";

@@ -38,10 +38,8 @@ export function ComentarioInputComponent(props:ComentarioInputComponentProps) {
       {usuario ? (
         <>
           <TextInput
-            editable
             multiline
             numberOfLines={4}
-            maxLength={40}
             placeholder="Escreva sua avaliação..."
             onChangeText={(text) => onChangeText(text)}
             value={value}

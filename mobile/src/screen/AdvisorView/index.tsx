@@ -1,5 +1,3 @@
-// TODO: implement AdvisorView screen
-
 import { View, FlatList } from "react-native";
 import { styles } from "./styles";
 import AdvisorButton from "../../components/AdvisorButton";
